@@ -26,7 +26,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         style={inter.style}
-        className="p-4 dark select-none min-h-screen bg-background font-sans antialiased flex items-center flex-col w-full"
+        className="scroll-smooth p-4 dark select-none min-h-screen bg-background font-sans antialiased flex items-center flex-col w-full"
       >
         {children}
       </body>

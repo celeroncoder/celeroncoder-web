@@ -8,9 +8,8 @@ export function About() {
         <p>
           Hey, I'm <span className="font-bold">Khushal Bhardwaj</span> a Full
           Stack Web Developer based in Jaipur, India. Passionate about building
-          web apps with React/NextJS for fast-growing startups. Seeking
-          opportunities to utilize skills in web development, especially
-          backend. Eager to learn.
+          web apps with React/NextJS for fast-growing startups. I'm also an
+          undergrad student at VIT Bhopal University.
         </p>
         <Separator className="my-4" />
         <div className="flex flex-col gap-4">

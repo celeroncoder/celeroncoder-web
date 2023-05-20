@@ -6,14 +6,12 @@ const projects: Project[] = [
     title: "Chindi",
     description:
       "It's an Expense Tracker App built with Next.JS to track all your expenses and also export them to csv",
-    github_url: "https://github.com/celeroncoder/chindi",
     live_url: "chindi.celeroncoder.tech",
   },
   {
     title: "Curewell Admin",
     description:
       "An extensive CRM-cum-Dashboard for a local Homeopathic Clinic built with Next.Js and tRPC",
-    github_url: "https://github.com/Curewell-Homeo-Clinic/curewell-admin",
   },
   {
     title: "PlayerStatPML",
