@@ -20,7 +20,7 @@ export const BlogCard: React.FC<Blog> = ({
   link,
 }) => {
   return (
-    <Link href={link} target="_blank">
+    <Link className="w-full" href={link} target="_blank">
       <Card>
         <h1
           style={space_grotesk.style}
