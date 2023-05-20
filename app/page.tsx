@@ -5,6 +5,7 @@ import { Links } from "@/components/links";
 import { Logo } from "@/components/logo";
 import { Projects } from "@/components/projects";
 import { ScrollDown } from "@/components/scroll-down";
+import { Stack } from "@/components/stack";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
         <ScrollDown />
       </section>
       <About />
+      <Stack />
       <Projects />
       <Blogs />
     </main>
