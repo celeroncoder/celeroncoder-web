@@ -29,6 +29,7 @@ export function Projects() {
       <div className="flex flex-wrap gap-4">
         {projects.map((project) => (
           <ProjectCard
+            key={project.title}
             title={project.title}
             description={project.description}
             github_url={project.github_url}

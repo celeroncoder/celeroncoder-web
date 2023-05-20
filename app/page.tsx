@@ -20,6 +20,7 @@ export default function Home() {
         <section className="flex-[0.2] justify-center lg:flex md:flex flex-col gap-2 sm:hidden hidden items-end pr-10">
           {links.map((link) => (
             <Link
+              key={link}
               style={space_grotesk.style}
               href={`/#${link.toLowerCase()}`}
               className="capitalize text-2xl font-bold tracking-tighter text-muted-foreground/40 hover:text-muted-foreground duration-300 cursor-alias"
