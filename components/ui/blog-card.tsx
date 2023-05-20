@@ -20,8 +20,8 @@ export const BlogCard: React.FC<Blog> = ({
   link,
 }) => {
   return (
-    <Link className="w-full" href={link} target="_blank">
-      <Card>
+    <Card>
+      <Link href={link} target="_blank">
         <h1
           style={space_grotesk.style}
           className="text-xl tracking-tighter font-semibold"
@@ -33,7 +33,7 @@ export const BlogCard: React.FC<Blog> = ({
           {publishedAt}
           {readTime && `~ ${readTime}`}
         </p>
-      </Card>
-    </Link>
+      </Link>
+    </Card>
   );
 };
