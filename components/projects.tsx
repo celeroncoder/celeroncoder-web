@@ -6,7 +6,7 @@ const projects: Project[] = [
     title: "Chindi",
     description:
       "It's an Expense Tracker App built with Next.JS to track all your expenses and also export them to csv",
-    live_url: "chindi.celeroncoder.tech",
+    live_url: "https://chindi.celeroncoder.tech",
   },
   {
     title: "Curewell Admin",
