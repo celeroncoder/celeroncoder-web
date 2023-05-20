@@ -19,7 +19,7 @@ export function Footer() {
       <div className="w-full flex items-start justify-between gap-2">
         <div className="flex-[0.2] flex flex-col mt-5 pr-10">
           <p className="text-muted-foreground font-bold text-md">
-            celeroncoder
+            celeroncoder.
           </p>
           <Logo className="text-lg" />
         </div>

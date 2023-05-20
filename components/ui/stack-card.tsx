@@ -13,7 +13,7 @@ export const StackCard: React.FC<Stack> = ({ imgUrl, title }) => {
   return (
     <Card className="md:w-36 lg:w-36 sm:w-36 w-36 items-center">
       <Image
-        className="rounded-lg"
+        className="rounded-lg h-[50px]"
         src={imgUrl}
         height={50}
         width={50}

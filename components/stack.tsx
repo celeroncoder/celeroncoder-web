@@ -18,6 +18,14 @@ const stacks: Stack[] = [
     title: "Express.Js",
     imgUrl: "/expressjs.svg",
   },
+  {
+    title: "Prisma",
+    imgUrl: "/prisma.svg",
+  },
+  {
+    title: "Tailwind Css",
+    imgUrl: "/tailwindcss.svg",
+  },
 ];
 
 export function Stack() {
