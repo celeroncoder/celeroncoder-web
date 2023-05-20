@@ -1,3 +1,4 @@
+import { AnnoyedIcon, LaughIcon, MehIcon } from "lucide-react";
 import { Space_Grotesk } from "next/font/google";
 
 const space_grotesk = Space_Grotesk({ subsets: ["latin"] });
@@ -13,8 +14,8 @@ export function Greeting() {
         <br className="inline" />
         celeroncoder here.
       </h1>
-      <p className="text-muted-foreground text-sm sm:md:lg:text-md">
-        Too lazy to build a fancy site 😅
+      <p className="text-muted-foreground text-sm sm:text-sm md:text-md lg:text-md">
+        Too lazy to build a fancy site
       </p>
     </section>
   );
