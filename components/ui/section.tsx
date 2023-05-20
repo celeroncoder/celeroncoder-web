@@ -1,4 +1,5 @@
 import { Space_Grotesk } from "next/font/google";
+import Link from "next/link";
 
 const space_grotesk = Space_Grotesk({ subsets: ["latin"] });
 
@@ -7,14 +8,20 @@ export const Section: React.FC<{
   title: string;
 }> = ({ children, title }) => {
   return (
-    <section id={title.toLowerCase()} className="py-6 relative w-full">
-      <h1
-        style={space_grotesk.style}
-        className="capitalize lg:absolute md:absolute relative lg:-left-32 md:-left-32 lg:top-6 md:top-6 text-3xl text-muted-foreground/50 font-extralight lg:font-bold md:font-bold lg:tracking-tighter md:lg:tracking-tighter mb-4"
-      >
-        {title}
-      </h1>
-      <div className="max-w-xl">{children}</div>
+    <section
+      id={title.toLowerCase()}
+      className="py-6 gap-2 w-full flex sm:flex-col flex-col md:flex-row lg:flex-row"
+    >
+      <div className="flex-[0.2] flex items-start justify-start sm:justify-start md:justify-end lg:justify-end md:text-right lg:text-right pr-10">
+        <Link
+          href={`/#${title.toLowerCase()}`}
+          style={space_grotesk.style}
+          className="capitalize text-3xl text-muted-foreground/40 hover:text-muted-foreground font-extrabold lg:tracking-tighter md:lg:tracking-tighter mb-4"
+        >
+          {title}
+        </Link>
+      </div>
+      <div className="max-w-xl flex-[0.8]">{children}</div>
     </section>
   );
 };

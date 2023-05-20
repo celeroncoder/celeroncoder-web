@@ -21,7 +21,7 @@ export function Footer() {
           <p className="text-muted-foreground font-bold text-md">
             celeroncoder
           </p>
-          <Logo className="text-lg	" />
+          <Logo className="text-lg" />
         </div>
         <div className="flex-[0.4] flex flex-col text-xs gap-1 mt-5">
           <h1 className="text-primary text-sm mb-1">Links</h1>

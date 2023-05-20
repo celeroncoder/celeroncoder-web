@@ -22,7 +22,7 @@ const stacks: Stack[] = [
 
 export function Stack() {
   return (
-    <Section title="stack">
+    <Section title="tech stack">
       <div className="w-full flex flex-wrap gap-4 md:justify-start lg:justify-start sm:justify-center justify-center">
         {stacks.map((stack) => (
           <StackCard

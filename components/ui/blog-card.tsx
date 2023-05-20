@@ -1,6 +1,7 @@
+"use client";
 import { Space_Grotesk } from "next/font/google";
 import { Card } from "./card";
-import Link from "next/link";
+import { useRedirect } from "@/lib/hooks";
 
 const space_grotesk = Space_Grotesk({ subsets: ["latin"] });
 
@@ -19,21 +20,20 @@ export const BlogCard: React.FC<Blog> = ({
   readTime,
   link,
 }) => {
+  const redirect = useRedirect();
   return (
-    <Card>
-      <Link href={link} target="_blank">
-        <h1
-          style={space_grotesk.style}
-          className="text-xl tracking-tighter font-semibold"
-        >
-          {title}
-        </h1>
-        <p className="text-white/70 text-xs">{description}</p>
-        <p className="text-muted-foreground text-xs">
-          {publishedAt}
-          {readTime && `~ ${readTime}`}
-        </p>
-      </Link>
+    <Card className="cursor-alias" onClick={() => redirect(link, "_blank")}>
+      <h1
+        style={space_grotesk.style}
+        className="text-xl tracking-tighter font-semibold"
+      >
+        {title}
+      </h1>
+      <p className="text-white/70 text-xs">{description}</p>
+      <p className="text-muted-foreground text-xs">
+        {publishedAt}
+        {readTime && `~ ${readTime}`}
+      </p>
     </Card>
   );
 };
