@@ -12,7 +12,7 @@ const stacks: Stack[] = [
   },
   {
     title: "tRPC",
-    imgUrl: "/tRPC.svg",
+    imgUrl: "/trpc.svg",
   },
   {
     title: "Express.Js",
