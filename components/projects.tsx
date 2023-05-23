@@ -21,6 +21,13 @@ const projects: Project[] = [
     live_url:
       "https://rapidapi.com/celeronCoder/api/premier-league-player-and-club-statistics",
   },
+  {
+    title: "winston-highstorm",
+    description:
+      "An NPM Package to create winston Transport to ingest logs to highstorm.app",
+    github_url: "https://github.com/celeronCoder/winston-highstorm",
+    live_url: "https://link.celeroncoder.tech/winston-transport-npm",
+  },
 ];
 
 export function Projects() {
