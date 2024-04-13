@@ -1,4 +1,3 @@
-import { AnnoyedIcon, LaughIcon, MehIcon } from "lucide-react";
 import { Space_Grotesk } from "next/font/google";
 
 const space_grotesk = Space_Grotesk({ subsets: ["latin"] });
