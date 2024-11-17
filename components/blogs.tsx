@@ -1,5 +1,5 @@
 import { Blog, BlogCard } from "./ui/blog-card";
-import { Project, ProjectCard } from "./ui/project-card";
+import { motion } from "motion/react";
 import { Section } from "./ui/section";
 
 const blogs: Blog[] = [
@@ -47,14 +47,20 @@ export function Blogs() {
     <Section title="blogs">
       <div className="flex flex-wrap gap-4">
         {blogs.map((blog, idx) => (
-          <BlogCard
-            key={idx}
-            title={blog.title}
-            description={blog.description}
-            publishedAt={blog.publishedAt}
-            readTime={blog.readTime}
-            link={blog.link}
-          />
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: idx * 0.4 }}
+          >
+            <BlogCard
+              key={idx}
+              title={blog.title}
+              description={blog.description}
+              publishedAt={blog.publishedAt}
+              readTime={blog.readTime}
+              link={blog.link}
+            />
+          </motion.div>
         ))}
       </div>
     </Section>

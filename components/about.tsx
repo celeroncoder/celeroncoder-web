@@ -1,10 +1,18 @@
+"use client";
+
 import { Section } from "./ui/section";
 import { Separator } from "./ui/separator";
+import { motion } from "motion/react";
 
 export function About() {
   return (
     <Section title="about">
-      <div className="text-sm lg:text-md md:text-md sm:text-sm">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="text-sm lg:text-md md:text-md sm:text-sm"
+      >
         <p>
           Hey, I'm <span className="font-bold">Khushal Bhardwaj</span> a Full
           Stack Web Developer based in Jaipur, India. Passionate about building
@@ -26,7 +34,7 @@ export function About() {
             technical blogging, but I feel like writing it 😜.
           </p>
         </div>
-      </div>
+      </motion.div>
     </Section>
   );
 }

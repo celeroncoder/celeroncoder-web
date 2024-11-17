@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Links } from "./links";
+import { motion } from "motion/react";
 import { Separator } from "./ui/separator";
 import { Logo } from "./logo";
 
@@ -25,26 +25,38 @@ export function Footer() {
         </div>
         <div className="flex-[0.4] flex flex-col text-xs gap-1 mt-5">
           <h1 className="text-primary text-sm mb-1">Links</h1>
-          {links.map((link) => (
-            <Link
-              className="capitalize cursor-alias text-muted-foreground hover:text-primary"
-              href={`/#${link.toLowerCase()}`}
-              key={link}
+          {links.map((link, idx) => (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: idx * 0.4 }}
             >
-              {link}
-            </Link>
+              <Link
+                className="capitalize cursor-alias text-muted-foreground hover:text-primary"
+                href={`/#${link.toLowerCase()}`}
+                key={link}
+              >
+                {link}
+              </Link>
+            </motion.div>
           ))}
         </div>
         <div className="flex-[0.4] flex flex-col text-xs gap-1 mt-5">
           <h1 className="text-primary text-sm mb-1">Others</h1>
-          {otherLinks.map((link) => (
-            <Link
-              className="capitalize cursor-alias text-muted-foreground hover:text-primary"
-              href={link.url}
-              key={link.title}
+          {otherLinks.map((link, idx) => (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: idx * 0.4 }}
             >
-              {link.title}
-            </Link>
+              <Link
+                className="capitalize cursor-alias text-muted-foreground hover:text-primary"
+                href={link.url}
+                key={link.title}
+              >
+                {link.title}
+              </Link>
+            </motion.div>
           ))}
         </div>
       </div>

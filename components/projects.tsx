@@ -1,5 +1,6 @@
 import { Project, ProjectCard } from "./ui/project-card";
 import { Section } from "./ui/section";
+import { motion } from "motion/react";
 
 const projects: Project[] = [
   {
@@ -34,14 +35,20 @@ export function Projects() {
   return (
     <Section title="projects">
       <div className="flex flex-wrap gap-4">
-        {projects.map((project) => (
-          <ProjectCard
-            key={project.title}
-            title={project.title}
-            description={project.description}
-            github_url={project.github_url}
-            live_url={project.live_url}
-          />
+        {projects.map((project, idx) => (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: idx * 0.4 }}
+          >
+            <ProjectCard
+              key={project.title}
+              title={project.title}
+              description={project.description}
+              github_url={project.github_url}
+              live_url={project.live_url}
+            />
+          </motion.div>
         ))}
       </div>
     </Section>
