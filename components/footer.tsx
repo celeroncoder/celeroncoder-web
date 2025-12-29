@@ -1,65 +1,65 @@
 import Link from "next/link";
-import { motion } from "motion/react";
-import { Separator } from "./ui/separator";
 import { Logo } from "./logo";
 
-const links = ["about", "tech stack", "projects", "blogs"];
+const navLinks = ["about", "tech stack", "projects", "blogs"];
 
-const otherLinks: { title: string; url: string }[] = [
-  { title: "Github", url: "https://github.com/celeroncoder/celeroncoder.tech" },
-  { title: "Dev.to", url: "https://dev.to/celeron" },
-  { title: "Hashnode", url: "https://hashnode.com/@celeroncoder" },
-  { title: "Medium", url: "https://medium.com/@celeroncoder" },
+const socialLinks = [
+  { name: "GitHub", url: "https://github.com/celeroncoder/celeroncoder.tech" },
+  { name: "Dev.to", url: "https://dev.to/celeron" },
+  { name: "Hashnode", url: "https://hashnode.com/@celeroncoder" },
+  { name: "Medium", url: "https://medium.com/@celeroncoder" },
 ];
 
 export function Footer() {
   return (
-    <section className="w-full">
-      <Separator className="w-full" />
-      <div className="w-full flex items-start justify-between gap-2">
-        <div className="flex-[0.2] flex flex-col mt-5 pr-10">
-          <p className="text-muted-foreground font-bold text-md">
-            celeroncoder.
+    <footer className="border-t border-white pt-8 mt-16 pb-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div>
+          <Logo />
+          <p className="text-neutral-500 text-xs mt-2">
+            Developer. Builder. Creator.
           </p>
-          <Logo className="text-lg" />
         </div>
-        <div className="flex-[0.4] flex flex-col text-xs gap-1 mt-5">
-          <h1 className="text-primary text-sm mb-1">Links</h1>
-          {links.map((link, idx) => (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: idx * 0.4 }}
-            >
+
+        <div>
+          <h4 className="text-white text-sm font-bold mb-3">Navigation</h4>
+          <nav className="flex flex-col gap-2">
+            {navLinks.map((link) => (
               <Link
-                className="capitalize cursor-alias text-muted-foreground hover:text-primary"
-                href={`/#${link.toLowerCase()}`}
                 key={link}
+                href={`/#${link.toLowerCase()}`}
+                className="text-neutral-400 text-xs hover:text-white transition-colors duration-200"
               >
                 {link}
               </Link>
-            </motion.div>
-          ))}
+            ))}
+          </nav>
         </div>
-        <div className="flex-[0.4] flex flex-col text-xs gap-1 mt-5">
-          <h1 className="text-primary text-sm mb-1">Others</h1>
-          {otherLinks.map((link, idx) => (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: idx * 0.4 }}
-            >
+
+        <div>
+          <h4 className="text-white text-sm font-bold mb-3">Connect</h4>
+          <div className="flex flex-col gap-2">
+            {socialLinks.map((link) => (
               <Link
-                className="capitalize cursor-alias text-muted-foreground hover:text-primary"
+                key={link.name}
                 href={link.url}
-                key={link.title}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-neutral-400 text-xs hover:text-white transition-colors duration-200"
               >
-                {link.title}
+                {link.name}
               </Link>
-            </motion.div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
-    </section>
+
+      <div className="border-t border-white mt-8 pt-4">
+        <p className="text-neutral-500 text-xs text-center">
+          <span className="text-white">$</span> echo "© 2025 celeroncoder. Built
+          with Next.js"
+        </p>
+      </div>
+    </footer>
   );
 }

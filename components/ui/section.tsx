@@ -1,8 +1,4 @@
-import { Space_Grotesk } from "next/font/google";
 import Link from "next/link";
-import { motion } from "motion/react";
-
-const space_grotesk = Space_Grotesk({ subsets: ["latin"] });
 
 export const Section: React.FC<{
   children: React.ReactNode;
@@ -11,24 +7,21 @@ export const Section: React.FC<{
   return (
     <section
       id={title.toLowerCase()}
-      className="py-6 gap-2 w-full flex sm:flex-col flex-col md:flex-row lg:flex-row"
+      className="py-16"
     >
-      <div className="flex-[0.2] flex items-start justify-start sm:justify-start md:justify-end lg:justify-end md:text-right lg:text-right pr-10">
-        <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
+      <div className="border-b border-white pb-2 mb-6">
+        <Link
+          href={`/#${title.toLowerCase()}`}
+          className="flex items-center gap-2 text-sm hover:text-green-500 transition-colors duration-200"
         >
-          <Link
-            href={`/#${title.toLowerCase()}`}
-            style={space_grotesk.style}
-            className="capitalize text-3xl text-muted-foreground/40 hover:text-muted-foreground font-extrabold lg:tracking-tighter md:lg:tracking-tighter mb-4"
-          >
-            {title}
-          </Link>
-        </motion.div>
+          <span className="text-green-500">user@celeroncoder</span>
+          <span className="text-white">:</span>
+          <span className="text-blue-400">~</span>
+          <span className="text-white">$</span>
+          <span className="text-white ml-1">ls ./{title.toLowerCase().replace(" ", "-")}/</span>
+        </Link>
       </div>
-      <div className="max-w-xl flex-[0.8]">{children}</div>
+      <div className="space-y-4">{children}</div>
     </section>
   );
 };

@@ -1,51 +1,22 @@
 import { Section } from "./ui/section";
 import { StackCard } from "./ui/stack-card";
-import type { Stack } from "./ui/stack-card";
-import { motion } from "motion/react";
+import type { Stack as StackType } from "./ui/stack-card";
 
-const stacks: Stack[] = [
-  {
-    title: "Typescript",
-    imgUrl: "/typescript.svg",
-  },
-  {
-    title: "Next.Js",
-    imgUrl: "/nextjs.svg",
-  },
-  {
-    title: "tRPC",
-    imgUrl: "/trpc.svg",
-  },
-  {
-    title: "Express.Js",
-    imgUrl: "/expressjs.svg",
-  },
-  {
-    title: "Prisma",
-    imgUrl: "/prisma.svg",
-  },
-  {
-    title: "Tailwind Css",
-    imgUrl: "/tailwindcss.svg",
-  },
+const stacks: StackType[] = [
+  { title: "TypeScript", description: "Type-safe JavaScript" },
+  { title: "Next.js", description: "React framework for production" },
+  { title: "tRPC", description: "End-to-end typesafe APIs" },
+  { title: "Express.js", description: "Node.js web framework" },
+  { title: "Prisma", description: "Next-generation ORM" },
+  { title: "Tailwind CSS", description: "Utility-first CSS framework" },
 ];
 
 export function Stack() {
   return (
     <Section title="tech stack">
-      <div className="w-full flex flex-wrap gap-4 md:justify-start lg:justify-start sm:justify-center justify-center">
-        {stacks.map((stack, idx) => (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: idx * 0.4 }}
-          >
-            <StackCard
-              imgUrl={stack.imgUrl}
-              title={stack.title}
-              key={stack.title}
-            />{" "}
-          </motion.div>
+      <div className="space-y-2">
+        {stacks.map((stack) => (
+          <StackCard key={stack.title} {...stack} />
         ))}
       </div>
     </Section>

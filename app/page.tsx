@@ -1,5 +1,3 @@
-"use client";
-
 import { About } from "@/components/about";
 import { Blogs } from "@/components/blogs";
 import { Footer } from "@/components/footer";
@@ -8,59 +6,33 @@ import { Links } from "@/components/links";
 import { Logo } from "@/components/logo";
 import { Projects } from "@/components/projects";
 import { Stack } from "@/components/stack";
-import { Space_Grotesk } from "next/font/google";
 import Link from "next/link";
-import { motion } from "motion/react";
 
-const space_grotesk = Space_Grotesk({ subsets: ["latin"] });
-
-const links = ["about", "tech stack", "projects", "blogs"];
+const navLinks = ["about", "tech stack", "projects", "blogs"];
 
 export default function Home() {
   return (
-    <main className="flex flex-col gap-4 items-start justify-center">
-      <section className="min-h-screen w-full flex gap-2">
-        <section className="flex-[0.2] justify-center lg:flex md:flex flex-col gap-2 sm:hidden hidden items-end pr-10">
-          {links.map((link, idx) => (
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: idx * 0.4 }}
+    <main className="max-w-4xl mx-auto px-4 py-8">
+      <section className="min-h-screen flex flex-col justify-center gap-6">
+        <Logo />
+        <Greeting />
+        <Links />
+
+        <nav className="flex flex-wrap gap-4 text-sm mt-4">
+          {navLinks.map((link) => (
+            <Link
+              key={link}
+              href={`/#${link.toLowerCase()}`}
+              className="text-neutral-400 hover:text-white transition-colors duration-200"
             >
-              <Link
-                key={link}
-                style={space_grotesk.style}
-                href={`/#${link.toLowerCase()}`}
-                className="capitalize text-2xl font-bold tracking-tighter text-muted-foreground/40 hover:text-muted-foreground duration-300 cursor-alias"
-              >
-                {link.toLowerCase()}
-              </Link>
-            </motion.div>
+              <span className="text-neutral-600">$</span> {link}
+            </Link>
           ))}
-        </section>
-        <section className="flex-[0.8] flex justify-center flex-col gap-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <Logo className="text-4xl" />
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            <Greeting />
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            <Links />
-          </motion.div>
-        </section>
+        </nav>
+
+        <div className="text-neutral-500 text-xs mt-8">
+          <span className="text-white">↓</span> scroll to explore
+        </div>
       </section>
 
       <About />

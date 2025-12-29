@@ -1,11 +1,9 @@
-import { Libre_Barcode_39 } from "next/font/google";
-
-const barcode = Libre_Barcode_39({ subsets: ["latin"], weight: ["400"] });
-
 export const Logo: React.FC<{ className?: string }> = ({ className }) => {
   return (
-    <section style={barcode.style} className={className}>
-      celeroncoder
-    </section>
+    <div className={`text-sm ${className}`}>
+      <span className="text-green-500">~</span>
+      <span className="text-white">/</span>
+      <span className="text-white font-bold">celeroncoder</span>
+    </div>
   );
 };

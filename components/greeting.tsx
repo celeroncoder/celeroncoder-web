@@ -1,21 +1,20 @@
-import { Space_Grotesk } from "next/font/google";
-
-const space_grotesk = Space_Grotesk({ subsets: ["latin"] });
-
 export function Greeting() {
   return (
-    <section>
-      <h1
-        style={space_grotesk.style}
-        className="text-3xl font-extrabold leading-tight tracking-tighter sm:text-3xl md:text-5xl lg:text-6xl"
-      >
-        Hey 👋
-        <br className="inline" />
-        celeroncoder here.
-      </h1>
-      <p className="text-muted-foreground text-sm sm:text-sm md:text-md lg:text-md">
-        Too lazy to build a fancy site
-      </p>
+    <section className="space-y-4">
+      <div className="flex items-center gap-2 text-sm">
+        <span className="text-green-500">user@celeroncoder</span>
+        <span>:</span>
+        <span className="text-blue-400">~</span>
+        <span>$</span>
+        <span className="ml-2">whoami</span>
+      </div>
+
+      <div className="border-l-2 border-white pl-4">
+        <h1 className="text-xl font-bold mb-2">Hey, celeroncoder here.</h1>
+        <p className="text-neutral-400 text-sm">
+          Full Stack Developer building web apps with React & Next.js
+        </p>
+      </div>
     </section>
   );
 }

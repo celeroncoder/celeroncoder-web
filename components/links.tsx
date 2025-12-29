@@ -1,30 +1,27 @@
-import {
-  AtSignIcon,
-  GithubIcon,
-  InstagramIcon,
-  LinkedinIcon,
-  TwitterIcon,
-} from "lucide-react";
 import Link from "next/link";
+
+const socialLinks = [
+  { name: "github", url: "https://github.com/celeroncoder" },
+  { name: "twitter", url: "https://twitter.com/celeroncoder" },
+  { name: "linkedin", url: "https://linkedin.com/in/celeroncoder" },
+  { name: "instagram", url: "https://instagram.com/celeroncoder" },
+  { name: "email", url: "mailto:celeroncoder@gmail.com" },
+];
 
 export function Links() {
   return (
-    <section className="flex items-center justify-start gap-4">
-      <Link href="https://twitter.com/celeroncoder" target="_blank">
-        <TwitterIcon className="w-5 cursor-alias hover:text-slate-400" />
-      </Link>
-      <Link href="https://github.com/celeroncoder" target="_blank">
-        <GithubIcon className="w-5 cursor-alias hover:text-slate-400" />
-      </Link>
-      <Link href="https://instagram.com/celeroncoder" target="_blank">
-        <InstagramIcon className="w-5 cursor-alias hover:text-slate-400" />
-      </Link>
-      <Link href="https://linkedin.com/in/celeroncoder" target="_blank">
-        <LinkedinIcon className="w-5 cursor-alias hover:text-slate-400" />
-      </Link>
-      <Link href="mailto:celeroncoder@gmail.com" target="_blank">
-        <AtSignIcon className="w-5 cursor-alias hover:text-slate-400" />
-      </Link>
-    </section>
+    <div className="flex flex-wrap gap-4 text-sm">
+      {socialLinks.map((link) => (
+        <Link
+          key={link.name}
+          href={link.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-400 hover:text-white hover:underline transition-colors duration-200"
+        >
+          {link.name}
+        </Link>
+      ))}
+    </div>
   );
 }

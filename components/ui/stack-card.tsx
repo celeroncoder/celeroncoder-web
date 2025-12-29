@@ -1,30 +1,22 @@
-import Image from "next/image";
-import { Space_Grotesk } from "next/font/google";
 import { Card } from "./card";
-
-const space_grotesk = Space_Grotesk({ subsets: ["latin"] });
 
 export type Stack = {
   title: string;
-  imgUrl: string;
+  description?: string;
 };
 
-export const StackCard: React.FC<Stack> = ({ imgUrl, title }) => {
+export const StackCard: React.FC<Stack> = ({ title, description }) => {
   return (
-    <Card className="md:w-36 lg:w-36 sm:w-36 w-36 items-center">
-      <Image
-        className="rounded-lg h-[50px]"
-        src={imgUrl}
-        height={50}
-        width={50}
-        alt={title}
-      />
-      <h1
-        style={space_grotesk.style}
-        className="text-xl tracking-tighter font-semibold"
-      >
-        {title}
-      </h1>
+    <Card>
+      <div className="flex items-center gap-3">
+        <span className="text-green-500">▶</span>
+        <div>
+          <h4 className="text-white font-bold text-sm">{title}</h4>
+          {description && (
+            <p className="text-neutral-500 text-xs">{description}</p>
+          )}
+        </div>
+      </div>
     </Card>
   );
 };

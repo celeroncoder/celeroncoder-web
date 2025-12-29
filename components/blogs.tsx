@@ -1,12 +1,11 @@
 import { Blog, BlogCard } from "./ui/blog-card";
-import { motion } from "motion/react";
 import { Section } from "./ui/section";
 
 const blogs: Blog[] = [
   {
     title: "The type-safe guide to tRPC",
     description:
-      "tRPC is a typescript library, so to say, that makes it easy to create type-safe APIs without schema or any sort of code generation.",
+      "tRPC is a typescript library that makes it easy to create type-safe APIs without schema or code generation.",
     publishedAt: "July 27, 2022",
     readTime: "5 min",
     link: "https://dev.to/celeron/the-type-safe-guide-to-trpc-og1",
@@ -14,14 +13,14 @@ const blogs: Blog[] = [
   {
     title: "Spinning up MySQL Database with Docker",
     description:
-      "Spinning up a MySQL Database with Docker, this is how I personally go about it and some other useful refrences.",
+      "How to spin up a MySQL Database with Docker and some useful references.",
     publishedAt: "July 27, 2022",
     readTime: "2 min",
     link: "https://dev.to/celeron/spinning-up-mysql-database-with-docker-2d2a",
   },
   {
     title: "REST with Rust",
-    description: "Calling Rest APIs with Rust",
+    description: "Calling REST APIs with Rust",
     publishedAt: "Sep 5, 2022",
     readTime: "4 min",
     link: "https://dev.to/celeron/rest-with-rust-4j5d",
@@ -45,22 +44,9 @@ const blogs: Blog[] = [
 export function Blogs() {
   return (
     <Section title="blogs">
-      <div className="flex flex-wrap gap-4">
-        {blogs.map((blog, idx) => (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: idx * 0.4 }}
-          >
-            <BlogCard
-              key={idx}
-              title={blog.title}
-              description={blog.description}
-              publishedAt={blog.publishedAt}
-              readTime={blog.readTime}
-              link={blog.link}
-            />
-          </motion.div>
+      <div className="space-y-4">
+        {blogs.map((blog) => (
+          <BlogCard key={blog.title} {...blog} />
         ))}
       </div>
     </Section>

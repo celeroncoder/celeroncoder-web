@@ -1,9 +1,5 @@
-import { ExternalLinkIcon, GithubIcon, LockIcon } from "lucide-react";
 import Link from "next/link";
-import { Space_Grotesk } from "next/font/google";
 import { Card } from "./card";
-
-const space_grotesk = Space_Grotesk({ subsets: ["latin"] });
 
 export type Project = {
   title: string;
@@ -20,24 +16,34 @@ export const ProjectCard: React.FC<Project> = ({
 }) => {
   return (
     <Card>
-      <h1
-        style={space_grotesk.style}
-        className="text-xl tracking-tighter font-semibold"
-      >
-        {title}
-      </h1>
-      <p className="text-white/70 text-xs">{description}</p>
-      <div className="flex gap-2 w-full items-center justify-start">
+      <div className="flex items-center gap-2 mb-2">
+        <span className="text-neutral-500 text-xs">[DIR]</span>
+        <h3 className="text-white font-bold text-sm">{title}</h3>
+      </div>
+
+      <p className="text-neutral-400 text-xs mb-3">{description}</p>
+
+      <div className="flex gap-3 text-xs">
         {github_url ? (
-          <Link href={github_url}>
-            <GithubIcon className="w-4" />
+          <Link
+            href={github_url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-400 hover:underline"
+          >
+            → github
           </Link>
         ) : (
-          <LockIcon className="w-4" />
+          <span className="text-neutral-600">→ private</span>
         )}
         {live_url && (
-          <Link href={live_url}>
-            <ExternalLinkIcon className="w-4" />
+          <Link
+            href={live_url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-400 hover:underline"
+          >
+            → live
           </Link>
         )}
       </div>
