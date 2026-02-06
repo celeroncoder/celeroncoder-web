@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { About } from "@/components/about";
 import { Blogs } from "@/components/blogs";
 import { Footer } from "@/components/footer";

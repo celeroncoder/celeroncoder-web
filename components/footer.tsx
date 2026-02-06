@@ -1,7 +1,13 @@
 import Link from "next/link";
 import { Logo } from "./logo";
 
-const navLinks = ["about", "tech stack", "projects", "blogs"];
+const navLinks = [
+  { name: "about", href: "/#about" },
+  { name: "tech stack", href: "/#tech stack" },
+  { name: "projects", href: "/#projects" },
+  { name: "blogs", href: "/#blogs" },
+  { name: "blog", href: "/blog" },
+];
 
 const socialLinks = [
   { name: "GitHub", url: "https://github.com/celeroncoder/celeroncoder.tech" },
@@ -26,11 +32,11 @@ export function Footer() {
           <nav className="flex flex-col gap-2">
             {navLinks.map((link) => (
               <Link
-                key={link}
-                href={`/#${link.toLowerCase()}`}
+                key={link.name}
+                href={link.href}
                 className="text-neutral-400 text-xs hover:text-white transition-colors duration-200"
               >
-                {link}
+                {link.name}
               </Link>
             ))}
           </nav>
@@ -56,8 +62,8 @@ export function Footer() {
 
       <div className="border-t border-white mt-8 pt-4">
         <p className="text-neutral-500 text-xs text-center">
-          <span className="text-white">$</span> echo "© 2025 celeroncoder. Built
-          with Next.js"
+          <span className="text-white">$</span> echo &quot;&copy; 2025 celeroncoder. Built
+          with Next.js&quot;
         </p>
       </div>
     </footer>

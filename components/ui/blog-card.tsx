@@ -6,7 +6,7 @@ export type Blog = {
   description: string;
   publishedAt: string;
   readTime?: string;
-  link: string;
+  slug: string;
 };
 
 export const BlogCard: React.FC<Blog> = ({
@@ -14,7 +14,7 @@ export const BlogCard: React.FC<Blog> = ({
   description,
   publishedAt,
   readTime,
-  link,
+  slug,
 }) => {
   return (
     <Card>
@@ -27,7 +27,7 @@ export const BlogCard: React.FC<Blog> = ({
         <span>{publishedAt}</span>
         {readTime && (
           <>
-            <span>•</span>
+            <span>&middot;</span>
             <span>{readTime}</span>
           </>
         )}
@@ -36,12 +36,10 @@ export const BlogCard: React.FC<Blog> = ({
       <p className="text-neutral-400 text-xs mb-3">{description}</p>
 
       <Link
-        href={link}
-        target="_blank"
-        rel="noopener noreferrer"
+        href={`/blog/${slug}`}
         className="text-blue-400 text-xs hover:underline"
       >
-        → read
+        &rarr; read
       </Link>
     </Card>
   );
