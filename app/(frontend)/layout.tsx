@@ -1,6 +1,7 @@
 import "./globals.css";
 import type { Metadata, Viewport } from "next";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
   title: "Khushal Bhardwaj",
@@ -40,6 +41,7 @@ export default function RootLayout({
       <body className="scroll-smooth min-h-screen bg-black">
         {children}
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
