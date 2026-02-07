@@ -8,18 +8,10 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        mono: [
-          "ui-monospace",
-          "SFMono-Regular",
-          "Menlo",
-          "Monaco",
-          "Consolas",
-          '"Liberation Mono"',
-          '"Courier New"',
-          "monospace",
-        ],
+        sans: ['var(--font-geist-sans)', 'system-ui', 'sans-serif'],
+        pixel: ['var(--font-geist-pixel-square)', 'monospace'],
       },
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/typography")],
 };
