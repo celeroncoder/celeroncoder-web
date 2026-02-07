@@ -40,7 +40,7 @@ const projects: Project[] = [
 export function Projects() {
   return (
     <section className="space-y-5">
-      <h2 className="text-lg font-medium tracking-tight">Projects</h2>
+      <h2 className="text-lg font-medium tracking-tight font-pixel">Projects</h2>
       <div className="space-y-6">
         {projects.map((project) => (
           <div key={project.title} className="group">

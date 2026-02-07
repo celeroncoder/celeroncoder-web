@@ -1,7 +1,7 @@
 export function About() {
   return (
     <section className="space-y-5">
-      <h2 className="text-lg font-medium tracking-tight">About</h2>
+      <h2 className="text-lg font-medium tracking-tight font-pixel">About</h2>
       <div className="space-y-4 text-sm text-neutral-400 leading-relaxed">
         <p>
           Hey, I&apos;m{" "}

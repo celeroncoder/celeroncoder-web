@@ -15,7 +15,7 @@ export async function Blogs() {
 
   return (
     <section className="space-y-5">
-      <h2 className="text-lg font-medium tracking-tight">Blog</h2>
+      <h2 className="text-lg font-medium tracking-tight font-pixel">Blog</h2>
       <div className="space-y-5">
         {posts.map((post) => (
           <Link

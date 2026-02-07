@@ -63,7 +63,7 @@ export default async function BlogPostPage({ params }: Props) {
 
       <article>
         <header className="mb-10">
-          <h1 className="text-2xl font-medium tracking-tight">{post.title}</h1>
+          <h1 className="text-2xl font-medium tracking-tight font-pixel">{post.title}</h1>
 
           <div className="flex flex-wrap gap-3 text-xs text-neutral-500 mt-3">
             <span>

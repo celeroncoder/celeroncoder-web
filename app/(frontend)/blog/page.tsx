@@ -30,7 +30,7 @@ export default async function BlogPage() {
         </Link>
       </div>
 
-      <h1 className="text-2xl font-medium tracking-tight mb-10">Blog</h1>
+      <h1 className="text-2xl font-medium tracking-tight mb-10 font-pixel">Blog</h1>
 
       {posts.length === 0 ? (
         <p className="text-neutral-500 text-sm">No posts yet.</p>

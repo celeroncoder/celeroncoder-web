@@ -14,7 +14,7 @@ export function Greeting() {
       </div>
 
       <div className="space-y-4 max-w-md">
-        <h1 className="text-2xl font-medium tracking-tight">
+        <h1 className="text-2xl font-medium tracking-tight font-pixel">
           Hey, I&apos;m Khushal Bhardwaj.
         </h1>
 

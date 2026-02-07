@@ -28,7 +28,7 @@ export default function Home() {
           <div className="mt-12">
             <Link
               href="mailto:celeroncoder@gmail.com"
-              className="inline-flex items-center px-6 py-2.5 bg-white text-black text-sm font-medium rounded-full hover:bg-neutral-200 transition-colors duration-300"
+              className="inline-flex items-center px-6 py-2.5 bg-white text-black text-sm font-medium rounded-full hover:bg-neutral-200 transition-colors duration-300 font-pixel"
             >
               Say Hello
             </Link>
