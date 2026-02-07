@@ -8,16 +8,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        mono: [
-          "ui-monospace",
-          "SFMono-Regular",
-          "Menlo",
-          "Monaco",
-          "Consolas",
-          '"Liberation Mono"',
-          '"Courier New"',
-          "monospace",
-        ],
+        sans: ['"DM Sans"', 'system-ui', 'sans-serif'],
+        serif: ['"Newsreader"', 'Georgia', 'serif'],
       },
     },
   },

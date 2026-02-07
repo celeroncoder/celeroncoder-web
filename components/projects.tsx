@@ -1,5 +1,12 @@
-import { Project, ProjectCard } from "./ui/project-card";
-import { Section } from "./ui/section";
+import Link from "next/link";
+import { ArrowUpRight, Lock } from "lucide-react";
+
+type Project = {
+  title: string;
+  description: string;
+  github_url?: string;
+  live_url?: string;
+};
 
 const projects: Project[] = [
   {
@@ -32,12 +39,42 @@ const projects: Project[] = [
 
 export function Projects() {
   return (
-    <Section title="projects">
-      <div className="space-y-4">
+    <section className="space-y-5">
+      <h2 className="text-lg font-medium tracking-tight">Projects</h2>
+      <div className="space-y-6">
         {projects.map((project) => (
-          <ProjectCard key={project.title} {...project} />
+          <div key={project.title} className="group">
+            <h3 className="text-white text-sm font-medium">{project.title}</h3>
+            <p className="text-neutral-400 text-sm mt-1 leading-relaxed">
+              {project.description}
+            </p>
+            <div className="flex gap-4 mt-2">
+              {project.github_url ? (
+                <Link
+                  href={project.github_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-neutral-500 text-xs hover:text-white transition-colors duration-300"
+                >
+                  GitHub <ArrowUpRight className="inline w-3 h-3" />
+                </Link>
+              ) : (
+                <span className="text-neutral-600 text-xs"><Lock className="inline w-3 h-3" /> Private</span>
+              )}
+              {project.live_url && (
+                <Link
+                  href={project.live_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-neutral-500 text-xs hover:text-white transition-colors duration-300"
+                >
+                  Live <ArrowUpRight className="inline w-3 h-3" />
+                </Link>
+              )}
+            </div>
+          </div>
         ))}
       </div>
-    </Section>
+    </section>
   );
 }

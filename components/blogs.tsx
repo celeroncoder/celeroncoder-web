@@ -1,8 +1,7 @@
 import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import { getPayload } from "payload";
 import config from "@payload-config";
-import { BlogCard } from "./ui/blog-card";
-import { Section } from "./ui/section";
 
 export async function Blogs() {
   const payload = await getPayload({ config });
@@ -12,35 +11,50 @@ export async function Blogs() {
     limit: 5,
   });
 
+  if (posts.length === 0) return null;
+
   return (
-    <Section title="blogs">
-      <div className="space-y-4">
-        {posts.length === 0 ? (
-          <p className="text-neutral-500 text-sm">No posts yet.</p>
-        ) : (
-          posts.map((post) => (
-            <BlogCard
-              key={post.id}
-              title={post.title}
-              description={post.excerpt}
-              publishedAt={new Date(post.publishedAt).toLocaleDateString(
-                "en-US",
-                { year: "numeric", month: "short", day: "numeric" }
+    <section className="space-y-5">
+      <h2 className="text-lg font-medium tracking-tight">Blog</h2>
+      <div className="space-y-5">
+        {posts.map((post) => (
+          <Link
+            key={post.id}
+            href={`/blog/${post.slug}`}
+            className="block group"
+          >
+            <h3 className="text-white text-sm font-medium group-hover:text-neutral-300 transition-colors duration-300">
+              {post.title}
+            </h3>
+            <div className="flex gap-2 text-xs text-neutral-500 mt-1">
+              <span>
+                {new Date(post.publishedAt).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "short",
+                  day: "numeric",
+                })}
+              </span>
+              {post.readTime && (
+                <>
+                  <span>&#183;</span>
+                  <span>{post.readTime}</span>
+                </>
               )}
-              readTime={post.readTime || undefined}
-              slug={post.slug}
-            />
-          ))
-        )}
+            </div>
+            {post.excerpt && (
+              <p className="text-neutral-400 text-sm mt-1 leading-relaxed">
+                {post.excerpt}
+              </p>
+            )}
+          </Link>
+        ))}
       </div>
-      {posts.length > 0 && (
-        <Link
-          href="/blog"
-          className="text-blue-400 text-xs hover:underline mt-4 inline-block"
-        >
-          → view all posts
-        </Link>
-      )}
-    </Section>
+      <Link
+        href="/blog"
+        className="text-neutral-500 text-xs hover:text-white transition-colors duration-300 inline-block mt-2"
+      >
+        View all posts <ArrowUpRight className="inline w-3 h-3" />
+      </Link>
+    </section>
   );
 }

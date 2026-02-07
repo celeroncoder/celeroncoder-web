@@ -5,43 +5,44 @@ import { Blogs } from "@/components/blogs";
 import { Footer } from "@/components/footer";
 import { Greeting } from "@/components/greeting";
 import { Links } from "@/components/links";
-import { Logo } from "@/components/logo";
 import { Projects } from "@/components/projects";
 import { Stack } from "@/components/stack";
+import { HeroShader } from "@/components/hero-shader";
 import Link from "next/link";
-
-const navLinks = ["about", "tech stack", "projects", "blogs"];
 
 export default function Home() {
   return (
-    <main className="max-w-4xl mx-auto px-4 py-8">
-      <section className="min-h-screen flex flex-col justify-center gap-6">
-        <Logo />
-        <Greeting />
+    <main className="min-h-screen bg-black relative">
+      {/* Navigation - top right */}
+      <header className="absolute top-0 right-0 p-8 md:p-12 z-20">
         <Links />
+      </header>
 
-        <nav className="flex flex-wrap gap-4 text-sm mt-4">
-          {navLinks.map((link) => (
+      {/* Hero - vertically centered with dithering shader background */}
+      <section className="min-h-screen flex items-center relative overflow-hidden">
+        <HeroShader />
+        <div className="w-full max-w-xl mx-auto px-6 md:px-8 py-24 relative z-10">
+          <Greeting />
+          <Stack />
+
+          <div className="mt-12">
             <Link
-              key={link}
-              href={`/#${link.toLowerCase()}`}
-              className="text-neutral-400 hover:text-white transition-colors duration-200"
+              href="mailto:celeroncoder@gmail.com"
+              className="inline-flex items-center px-6 py-2.5 bg-white text-black text-sm font-medium rounded-full hover:bg-neutral-200 transition-colors duration-300"
             >
-              <span className="text-neutral-600">$</span> {link}
+              Say Hello
             </Link>
-          ))}
-        </nav>
-
-        <div className="text-neutral-500 text-xs mt-8">
-          <span className="text-white">↓</span> scroll to explore
+          </div>
         </div>
       </section>
 
-      <About />
-      <Stack />
-      <Projects />
-      <Blogs />
-      <Footer />
+      {/* Content sections */}
+      <div className="w-full max-w-xl mx-auto px-6 md:px-8 pb-16 space-y-16">
+        <About />
+        <Projects />
+        <Blogs />
+        <Footer />
+      </div>
     </main>
   );
 }

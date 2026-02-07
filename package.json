@@ -17,6 +17,7 @@
     "@vercel/analytics": "^1.4.0",
     "clsx": "^2.1.1",
     "graphql": "^16.12.0",
+    "lucide-react": "^0.563.0",
     "next": "^16.0.0",
     "payload": "^3.75.0",
     "react": "^19.0.0",
@@ -35,6 +36,9 @@
     "typescript": "^5.7.2"
   },
   "pnpm": {
-    "onlyBuiltDependencies": ["sharp", "esbuild"]
+    "onlyBuiltDependencies": [
+      "sharp",
+      "esbuild"
+    ]
   }
 }

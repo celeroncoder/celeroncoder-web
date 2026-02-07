@@ -1,24 +1,26 @@
-import { Section } from "./ui/section";
-import { StackCard } from "./ui/stack-card";
-import type { Stack as StackType } from "./ui/stack-card";
-
-const stacks: StackType[] = [
-  { title: "TypeScript", description: "Type-safe JavaScript" },
-  { title: "Next.js", description: "React framework for production" },
-  { title: "tRPC", description: "End-to-end typesafe APIs" },
-  { title: "Express.js", description: "Node.js web framework" },
-  { title: "Prisma", description: "Next-generation ORM" },
-  { title: "Tailwind CSS", description: "Utility-first CSS framework" },
+const skills = [
+  "TypeScript",
+  "Next.js",
+  "tRPC",
+  "Express.js",
+  "Prisma",
+  "Tailwind CSS",
 ];
 
 export function Stack() {
   return (
-    <Section title="tech stack">
-      <div className="space-y-2">
-        {stacks.map((stack) => (
-          <StackCard key={stack.title} {...stack} />
+    <section className="space-y-4 mt-10">
+      <h2 className="text-sm font-medium text-neutral-300">Top Skills</h2>
+      <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+        {skills.map((skill, i) => (
+          <span key={skill} className="flex items-center gap-2">
+            <span className="text-neutral-400 text-sm">{skill}</span>
+            {i < skills.length - 1 && (
+              <span className="text-neutral-600">&#183;</span>
+            )}
+          </span>
         ))}
       </div>
-    </Section>
+    </section>
   );
 }

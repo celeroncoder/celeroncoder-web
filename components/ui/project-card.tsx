@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ChevronRight, ExternalLink, Lock } from "lucide-react";
 import { Card } from "./card";
 
 export type Project = {
@@ -31,10 +32,10 @@ export const ProjectCard: React.FC<Project> = ({
             rel="noopener noreferrer"
             className="text-blue-400 hover:underline"
           >
-            → github
+            <ChevronRight className="inline w-3 h-3" /> github
           </Link>
         ) : (
-          <span className="text-neutral-600">→ private</span>
+          <span className="text-neutral-600"><Lock className="inline w-3 h-3" /> private</span>
         )}
         {live_url && (
           <Link
@@ -43,7 +44,7 @@ export const ProjectCard: React.FC<Project> = ({
             rel="noopener noreferrer"
             className="text-blue-400 hover:underline"
           >
-            → live
+            <ExternalLink className="inline w-3 h-3" /> live
           </Link>
         )}
       </div>

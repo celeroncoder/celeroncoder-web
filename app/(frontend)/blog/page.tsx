@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ChevronLeft } from "lucide-react";
 import type { Metadata } from "next";
 import { getPayload } from "payload";
 import config from "@payload-config";
@@ -6,7 +7,7 @@ import config from "@payload-config";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "blog | celeroncoder",
+  title: "Blog | Khushal Bhardwaj",
   description: "Blog posts by Khushal Bhardwaj",
 };
 
@@ -19,41 +20,30 @@ export default async function BlogPage() {
   });
 
   return (
-    <main className="max-w-4xl mx-auto px-4 py-8">
-      <div className="border-b border-white pb-2 mb-8">
-        <div className="flex items-center gap-2 text-sm">
-          <span className="text-green-500">user@celeroncoder</span>
-          <span className="text-white">:</span>
-          <span className="text-blue-400">~</span>
-          <span className="text-white">$</span>
-          <span className="text-white ml-1">ls ./blog/</span>
-        </div>
-      </div>
-
-      <div className="mb-6">
+    <main className="max-w-xl mx-auto px-6 py-16">
+      <div className="mb-12">
         <Link
           href="/"
-          className="text-neutral-500 text-xs hover:text-white transition-colors duration-200"
+          className="text-neutral-500 text-sm hover:text-white transition-colors duration-300"
         >
-          $ cd ~
+          <ChevronLeft className="inline w-3.5 h-3.5" /> Back
         </Link>
       </div>
+
+      <h1 className="text-2xl font-medium tracking-tight mb-10">Blog</h1>
 
       {posts.length === 0 ? (
         <p className="text-neutral-500 text-sm">No posts yet.</p>
       ) : (
-        <div className="space-y-4">
+        <div className="space-y-8">
           {posts.map((post) => (
-            <Link key={post.id} href={`/blog/${post.slug}`}>
-              <article className="border-l-2 border-white pl-4 py-3 hover:border-green-500 transition-colors duration-200">
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="text-neutral-500 text-xs">[FILE]</span>
-                  <h2 className="text-white font-bold text-sm">
-                    {post.title}
-                  </h2>
-                </div>
+            <Link key={post.id} href={`/blog/${post.slug}`} className="block group">
+              <article>
+                <h2 className="text-white text-base font-medium group-hover:text-neutral-300 transition-colors duration-300">
+                  {post.title}
+                </h2>
 
-                <div className="flex gap-2 text-xs text-neutral-500 mb-2">
+                <div className="flex gap-2 text-xs text-neutral-500 mt-1.5">
                   <span>
                     {new Date(post.publishedAt).toLocaleDateString("en-US", {
                       year: "numeric",
@@ -63,13 +53,17 @@ export default async function BlogPage() {
                   </span>
                   {post.readTime && (
                     <>
-                      <span>&middot;</span>
+                      <span>&#183;</span>
                       <span>{post.readTime}</span>
                     </>
                   )}
                 </div>
 
-                <p className="text-neutral-400 text-xs">{post.excerpt}</p>
+                {post.excerpt && (
+                  <p className="text-neutral-400 text-sm mt-2 leading-relaxed">
+                    {post.excerpt}
+                  </p>
+                )}
               </article>
             </Link>
           ))}

@@ -1,3 +1,4 @@
+import { Play } from "lucide-react";
 import { Card } from "./card";
 
 export type Stack = {
@@ -9,7 +10,7 @@ export const StackCard: React.FC<Stack> = ({ title, description }) => {
   return (
     <Card>
       <div className="flex items-center gap-3">
-        <span className="text-green-500">▶</span>
+        <Play className="w-3.5 h-3.5 text-green-500 fill-green-500" />
         <div>
           <h4 className="text-white font-bold text-sm">{title}</h4>
           {description && (

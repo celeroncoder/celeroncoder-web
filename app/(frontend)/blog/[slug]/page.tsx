@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ChevronLeft } from "lucide-react";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -27,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!post) return { title: "Post not found" };
 
   return {
-    title: `${post.meta?.title || post.title} | celeroncoder`,
+    title: `${post.meta?.title || post.title} | Khushal Bhardwaj`,
     description: post.meta?.description || post.excerpt,
   };
 }
@@ -50,27 +51,19 @@ export default async function BlogPostPage({ params }: Props) {
   const tags = (post.tags || []) as Tag[];
 
   return (
-    <main className="max-w-4xl mx-auto px-4 py-8">
-      <div className="mb-6">
+    <main className="max-w-xl mx-auto px-6 py-16">
+      <div className="mb-12">
         <Link
           href="/blog"
-          className="text-neutral-500 text-xs hover:text-white transition-colors duration-200"
+          className="text-neutral-500 text-sm hover:text-white transition-colors duration-300"
         >
-          $ cd ../blog
+          <ChevronLeft className="inline w-3.5 h-3.5" /> Back to blog
         </Link>
       </div>
 
       <article>
-        <header className="border-b border-white pb-4 mb-8">
-          <div className="flex items-center gap-2 text-sm mb-2">
-            <span className="text-green-500">user@celeroncoder</span>
-            <span className="text-white">:</span>
-            <span className="text-blue-400">~</span>
-            <span className="text-white">$</span>
-            <span className="text-white ml-1">cat ./blog/{post.slug}</span>
-          </div>
-
-          <h1 className="text-white text-2xl font-bold mt-4">{post.title}</h1>
+        <header className="mb-10">
+          <h1 className="text-2xl font-medium tracking-tight">{post.title}</h1>
 
           <div className="flex flex-wrap gap-3 text-xs text-neutral-500 mt-3">
             <span>
@@ -82,18 +75,18 @@ export default async function BlogPostPage({ params }: Props) {
             </span>
             {post.readTime && (
               <>
-                <span>&middot;</span>
+                <span>&#183;</span>
                 <span>{post.readTime}</span>
               </>
             )}
           </div>
 
           {tags.length > 0 && (
-            <div className="flex flex-wrap gap-2 mt-3">
+            <div className="flex flex-wrap gap-2 mt-4">
               {tags.map((tag) => (
                 <span
                   key={tag.id}
-                  className="text-xs text-green-500 border border-green-500/30 px-2 py-0.5"
+                  className="text-xs text-neutral-400 bg-neutral-800/50 px-2.5 py-1 rounded-full"
                 >
                   {tag.name}
                 </span>
@@ -103,7 +96,7 @@ export default async function BlogPostPage({ params }: Props) {
         </header>
 
         {heroImage?.url && (
-          <div className="mb-8">
+          <div className="mb-10 rounded-lg overflow-hidden">
             <Image
               src={heroImage.url}
               alt={heroImage.alt}
@@ -114,18 +107,18 @@ export default async function BlogPostPage({ params }: Props) {
           </div>
         )}
 
-        <div className="prose prose-invert prose-sm max-w-none prose-headings:font-mono prose-headings:text-white prose-p:text-neutral-300 prose-a:text-blue-400 prose-code:text-green-400 prose-pre:bg-neutral-900 prose-pre:border prose-pre:border-neutral-700 prose-strong:text-white prose-blockquote:border-green-500 prose-blockquote:text-neutral-400">
+        <div className="prose prose-invert prose-sm max-w-none prose-headings:font-medium prose-headings:text-white prose-headings:tracking-tight prose-p:text-neutral-300 prose-p:leading-relaxed prose-a:text-white prose-a:underline prose-a:underline-offset-2 prose-code:text-neutral-300 prose-pre:bg-neutral-900 prose-pre:border prose-pre:border-neutral-800 prose-pre:rounded-lg prose-strong:text-white prose-blockquote:border-neutral-700 prose-blockquote:text-neutral-400">
           {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
           <RichText data={post.content as any} />
         </div>
       </article>
 
-      <div className="border-t border-white mt-12 pt-6">
+      <div className="border-t border-neutral-800 mt-16 pt-6">
         <Link
           href="/blog"
-          className="text-neutral-500 text-xs hover:text-white transition-colors duration-200"
+          className="text-neutral-500 text-sm hover:text-white transition-colors duration-300"
         >
-          &larr; back to all posts
+          <ChevronLeft className="inline w-3.5 h-3.5" /> Back to all posts
         </Link>
       </div>
     </main>

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ChevronRight } from "lucide-react";
 import { Card } from "./card";
 
 export type Blog = {
@@ -39,7 +40,7 @@ export const BlogCard: React.FC<Blog> = ({
         href={`/blog/${slug}`}
         className="text-blue-400 text-xs hover:underline"
       >
-        &rarr; read
+        <ChevronRight className="inline w-3 h-3" /> read
       </Link>
     </Card>
   );
