@@ -15,12 +15,6 @@ export function About() {
           writing blogs, mostly technical. Although I may not be following it
           that regularly, you might think, but I do love it.
         </p>
-        <p>
-          I developed this habit of writing mainly because I was forced to under
-          my academic curriculum, so rather than taking it as a burden I quite
-          enjoy it. I&apos;ve developed this unique style of writing with
-          personality.
-        </p>
       </div>
     </section>
   );
