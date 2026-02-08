@@ -39,8 +39,10 @@
   },
   "pnpm": {
     "onlyBuiltDependencies": [
+      "bufferutil",
+      "esbuild",
       "sharp",
-      "esbuild"
+      "utf-8-validate"
     ]
   }
 }
