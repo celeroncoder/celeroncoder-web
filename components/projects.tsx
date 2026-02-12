@@ -10,10 +10,11 @@ type Project = {
 
 const projects: Project[] = [
   {
-    title: "Chindi",
+    title: "Shire",
     description:
-      "Expense Tracker App built with Next.JS to track expenses and export to CSV",
-    live_url: "https://chindi.celeroncoder.tech",
+      "A macOS native Claude Code wrapper with all the functionalities of Claude Code",
+    github_url: "https://github.com/celeroncoder/shire",
+    live_url: "https://shire.celeroncoder.com",
   },
   {
     title: "Curewell Admin",
