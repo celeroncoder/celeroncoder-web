@@ -11,7 +11,7 @@ export function Footer() {
   return (
     <footer className="border-t border-neutral-800 pt-8 mt-4">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <p className="text-neutral-500 text-xs">
+        <p className="text-neutral-500 text-xs" suppressHydrationWarning>
           &copy; {new Date().getFullYear()} Khushal Bhardwaj. Built with
           Next.js.
         </p>

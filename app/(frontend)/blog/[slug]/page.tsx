@@ -15,8 +15,7 @@ type Props = {
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
-  const payload = await getPayload({ config });
+  const [{ slug }, payload] = await Promise.all([params, getPayload({ config })]);
   const {
     docs: [post],
   } = await payload.find({
@@ -34,8 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function BlogPostPage({ params }: Props) {
-  const { slug } = await params;
-  const payload = await getPayload({ config });
+  const [{ slug }, payload] = await Promise.all([params, getPayload({ config })]);
   const {
     docs: [post],
   } = await payload.find({
@@ -57,7 +55,7 @@ export default async function BlogPostPage({ params }: Props) {
           href="/blog"
           className="text-neutral-500 text-sm hover:text-white transition-colors duration-300"
         >
-          <ChevronLeft className="inline w-3.5 h-3.5" /> Back to blog
+          <ChevronLeft className="inline size-3.5" /> Back to blog
         </Link>
       </div>
 
@@ -66,7 +64,7 @@ export default async function BlogPostPage({ params }: Props) {
           <h1 className="text-2xl font-medium tracking-tight font-pixel">{post.title}</h1>
 
           <div className="flex flex-wrap gap-3 text-xs text-neutral-500 mt-3">
-            <span>
+            <span suppressHydrationWarning>
               {new Date(post.publishedAt).toLocaleDateString("en-US", {
                 year: "numeric",
                 month: "long",
@@ -118,7 +116,7 @@ export default async function BlogPostPage({ params }: Props) {
           href="/blog"
           className="text-neutral-500 text-sm hover:text-white transition-colors duration-300"
         >
-          <ChevronLeft className="inline w-3.5 h-3.5" /> Back to all posts
+          <ChevronLeft className="inline size-3.5" /> Back to all posts
         </Link>
       </div>
     </main>

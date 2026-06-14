@@ -29,7 +29,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${GeistSans.variable} ${GeistPixelSquare.variable}`}>
-      <body className="scroll-smooth min-h-screen bg-black">
+      <body className="scroll-smooth min-h-screen bg-gray-950">
         {children}
         <Analytics />
         <SpeedInsights />

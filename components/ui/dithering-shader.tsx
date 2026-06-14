@@ -324,6 +324,8 @@ function createProgram(
   return program
 }
 
+const EMPTY_STYLE: React.CSSProperties = {};
+
 export function DitheringShader({
   width = 800,
   height = 800,
@@ -334,7 +336,7 @@ export function DitheringShader({
   pxSize = 4,
   speed = 1,
   className = "",
-  style = {},
+  style = EMPTY_STYLE,
 }: DitheringShaderProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const animationRef = useRef<number>(0)

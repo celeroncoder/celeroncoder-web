@@ -26,7 +26,7 @@ export default async function BlogPage() {
           href="/"
           className="text-neutral-500 text-sm hover:text-white transition-colors duration-300"
         >
-          <ChevronLeft className="inline w-3.5 h-3.5" /> Back
+          <ChevronLeft className="inline size-3.5" /> Back
         </Link>
       </div>
 
@@ -44,7 +44,7 @@ export default async function BlogPage() {
                 </h2>
 
                 <div className="flex gap-2 text-xs text-neutral-500 mt-1.5">
-                  <span>
+                  <span suppressHydrationWarning>
                     {new Date(post.publishedAt).toLocaleDateString("en-US", {
                       year: "numeric",
                       month: "short",

@@ -27,7 +27,7 @@ export async function Blogs() {
               {post.title}
             </h3>
             <div className="flex gap-2 text-xs text-neutral-500 mt-1">
-              <span>
+              <span suppressHydrationWarning>
                 {new Date(post.publishedAt).toLocaleDateString("en-US", {
                   year: "numeric",
                   month: "short",
@@ -53,7 +53,7 @@ export async function Blogs() {
         href="/blog"
         className="text-neutral-500 text-xs hover:text-white transition-colors duration-300 inline-block mt-2"
       >
-        View all posts <ArrowUpRight className="inline w-3 h-3" />
+        View all posts <ArrowUpRight className="inline size-3" />
       </Link>
     </section>
   );

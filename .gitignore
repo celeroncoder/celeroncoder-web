@@ -37,3 +37,7 @@ next-env.d.ts
 # payload
 /public/media
 payload.db
+
+# pnpm local store cache
+.pnpm-store/
+pnpm-workspace.yaml

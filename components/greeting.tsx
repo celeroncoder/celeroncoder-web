@@ -1,15 +1,15 @@
-/* eslint-disable @next/next/no-img-element */
+import Image from "next/image";
 
 export function Greeting() {
   return (
     <section className="space-y-6">
-      <div className="w-20 h-20 rounded-full overflow-hidden bg-neutral-800 ring-2 ring-neutral-700">
-        <img
+      <div className="size-20 rounded-full overflow-hidden bg-neutral-800 ring-2 ring-neutral-700">
+        <Image
           src="https://github.com/celeroncoder.png"
           alt="Khushal Bhardwaj"
           width={80}
           height={80}
-          className="object-cover w-full h-full"
+          className="object-cover size-full"
         />
       </div>
 
