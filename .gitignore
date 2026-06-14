@@ -40,3 +40,4 @@ payload.db
 
 # pnpm local store cache
 .pnpm-store/
+pnpm-workspace.yaml
