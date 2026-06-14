@@ -19,7 +19,7 @@ export const ProjectCard: React.FC<Project> = ({
     <Card>
       <div className="flex items-center gap-2 mb-2">
         <span className="text-neutral-500 text-xs">[DIR]</span>
-        <h3 className="text-white font-bold text-sm">{title}</h3>
+        <h3 className="text-white font-semibold text-sm">{title}</h3>
       </div>
 
       <p className="text-neutral-400 text-xs mb-3">{description}</p>
@@ -32,10 +32,10 @@ export const ProjectCard: React.FC<Project> = ({
             rel="noopener noreferrer"
             className="text-blue-400 hover:underline"
           >
-            <ChevronRight className="inline w-3 h-3" /> github
+            <ChevronRight className="inline size-3" /> github
           </Link>
         ) : (
-          <span className="text-neutral-600"><Lock className="inline w-3 h-3" /> private</span>
+          <span className="text-neutral-600"><Lock className="inline size-3" /> private</span>
         )}
         {live_url && (
           <Link
@@ -44,7 +44,7 @@ export const ProjectCard: React.FC<Project> = ({
             rel="noopener noreferrer"
             className="text-blue-400 hover:underline"
           >
-            <ExternalLink className="inline w-3 h-3" /> live
+            <ExternalLink className="inline size-3" /> live
           </Link>
         )}
       </div>

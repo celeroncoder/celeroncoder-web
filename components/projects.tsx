@@ -57,10 +57,10 @@ export function Projects() {
                   rel="noopener noreferrer"
                   className="text-neutral-500 text-xs hover:text-white transition-colors duration-300"
                 >
-                  GitHub <ArrowUpRight className="inline w-3 h-3" />
+                  GitHub <ArrowUpRight className="inline size-3" />
                 </Link>
               ) : (
-                <span className="text-neutral-600 text-xs"><Lock className="inline w-3 h-3" /> Private</span>
+                <span className="text-neutral-600 text-xs"><Lock className="inline size-3" /> Private</span>
               )}
               {project.live_url && (
                 <Link
@@ -69,7 +69,7 @@ export function Projects() {
                   rel="noopener noreferrer"
                   className="text-neutral-500 text-xs hover:text-white transition-colors duration-300"
                 >
-                  Live <ArrowUpRight className="inline w-3 h-3" />
+                  Live <ArrowUpRight className="inline size-3" />
                 </Link>
               )}
             </div>

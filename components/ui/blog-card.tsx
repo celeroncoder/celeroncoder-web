@@ -21,7 +21,7 @@ export const BlogCard: React.FC<Blog> = ({
     <Card>
       <div className="flex items-center gap-2 mb-2">
         <span className="text-neutral-500 text-xs">[FILE]</span>
-        <h3 className="text-white font-bold text-sm">{title}</h3>
+        <h3 className="text-white font-semibold text-sm">{title}</h3>
       </div>
 
       <div className="flex gap-2 text-xs text-neutral-500 mb-2">
@@ -40,7 +40,7 @@ export const BlogCard: React.FC<Blog> = ({
         href={`/blog/${slug}`}
         className="text-blue-400 text-xs hover:underline"
       >
-        <ChevronRight className="inline w-3 h-3" /> read
+        <ChevronRight className="inline size-3" /> read
       </Link>
     </Card>
   );
