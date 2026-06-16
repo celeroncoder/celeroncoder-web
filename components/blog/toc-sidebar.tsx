@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Undo2 } from "lucide-react";
+import { ArcadeUTurnLeft } from "@/components/icons/arcade-icons";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import type { TocHeading } from "@/lib/blog-toc";
@@ -68,10 +68,10 @@ export function TocSidebar({ headings }: TocSidebarProps) {
     >
       <Link
         href="/blog"
-        className="inline-flex items-center gap-1.5 text-[11px] tracking-wide text-neutral-600 hover:text-neutral-300 transition-colors duration-300"
+        className="inline-flex items-center gap-[0.3em] text-[11px] tracking-wide text-neutral-600 hover:text-neutral-300 transition-colors duration-300"
       >
-        <Undo2 className="w-3 h-3" />
-        see all
+        <ArcadeUTurnLeft />
+        <span className="font-pixel">see all</span>
       </Link>
 
       {showList && (

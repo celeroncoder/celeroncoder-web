@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ChevronLeft } from "lucide-react";
+import { ArcadeChevronLeft } from "@/components/icons/arcade-icons";
 import type { Metadata } from "next";
 import { getPayload } from "payload";
 import config from "@payload-config";
@@ -24,9 +24,10 @@ export default async function BlogPage() {
       <div className="mb-12">
         <Link
           href="/"
-          className="text-neutral-500 text-sm hover:text-white transition-colors duration-300"
+          className="inline-flex items-center gap-[0.3em] text-neutral-500 text-sm hover:text-white transition-colors duration-300"
         >
-          <ChevronLeft className="inline w-3.5 h-3.5" /> Back
+          <ArcadeChevronLeft />
+          <span className="font-pixel">Back</span>
         </Link>
       </div>
 

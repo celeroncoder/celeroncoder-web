@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ChevronRight } from "lucide-react";
+import { ArcadeChevronRight } from "@/components/icons/arcade-icons";
 import { Card } from "./card";
 
 export type Blog = {
@@ -38,9 +38,10 @@ export const BlogCard: React.FC<Blog> = ({
 
       <Link
         href={`/blog/${slug}`}
-        className="text-blue-400 text-xs hover:underline"
+        className="inline-flex items-center gap-[0.3em] text-blue-400 text-xs hover:underline"
       >
-        <ChevronRight className="inline w-3 h-3" /> read
+        <ArcadeChevronRight />
+        <span className="font-pixel">read</span>
       </Link>
     </Card>
   );

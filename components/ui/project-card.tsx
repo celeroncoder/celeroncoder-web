@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ChevronRight, ExternalLink, Lock } from "lucide-react";
+import { ArcadeChevronRight, ArcadeArrowUpRight, ArcadeLock } from "@/components/icons/arcade-icons";
 import { Card } from "./card";
 
 export type Project = {
@@ -30,21 +30,26 @@ export const ProjectCard: React.FC<Project> = ({
             href={github_url}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-blue-400 hover:underline"
+            className="inline-flex items-center gap-[0.3em] text-blue-400 hover:underline"
           >
-            <ChevronRight className="inline w-3 h-3" /> github
+            <ArcadeChevronRight />
+            <span className="font-pixel">github</span>
           </Link>
         ) : (
-          <span className="text-neutral-600"><Lock className="inline w-3 h-3" /> private</span>
+          <span className="inline-flex items-center gap-[0.3em] text-neutral-600">
+            <ArcadeLock />
+            <span className="font-pixel">private</span>
+          </span>
         )}
         {live_url && (
           <Link
             href={live_url}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-blue-400 hover:underline"
+            className="inline-flex items-center gap-[0.3em] text-blue-400 hover:underline"
           >
-            <ExternalLink className="inline w-3 h-3" /> live
+            <ArcadeArrowUpRight />
+            <span className="font-pixel">live</span>
           </Link>
         )}
       </div>

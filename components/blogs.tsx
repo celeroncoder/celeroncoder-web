@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { ArcadeArrowUpRight } from "@/components/icons/arcade-icons";
 import { getPayload } from "payload";
 import config from "@payload-config";
 
@@ -51,9 +51,10 @@ export async function Blogs() {
       </div>
       <Link
         href="/blog"
-        className="text-neutral-500 text-xs hover:text-white transition-colors duration-300 inline-block mt-2"
+        className="inline-flex items-center gap-[0.3em] text-neutral-500 text-xs hover:text-white transition-colors duration-300 mt-2"
       >
-        View all posts <ArrowUpRight className="inline w-3 h-3" />
+        <span className="font-pixel">View all posts</span>
+        <ArcadeArrowUpRight />
       </Link>
     </section>
   );

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowUpRight, Lock } from "lucide-react";
+import { ArcadeArrowUpRight, ArcadeLock } from "@/components/icons/arcade-icons";
 
 type Project = {
   title: string;
@@ -55,21 +55,26 @@ export function Projects() {
                   href={project.github_url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-neutral-500 text-xs hover:text-white transition-colors duration-300"
+                  className="inline-flex items-center gap-[0.3em] text-neutral-500 text-xs hover:text-white transition-colors duration-300"
                 >
-                  GitHub <ArrowUpRight className="inline w-3 h-3" />
+                  <span className="font-pixel">GitHub</span>
+                  <ArcadeArrowUpRight />
                 </Link>
               ) : (
-                <span className="text-neutral-600 text-xs"><Lock className="inline w-3 h-3" /> Private</span>
+                <span className="inline-flex items-center gap-[0.3em] text-neutral-600 text-xs">
+                  <ArcadeLock />
+                  <span className="font-pixel">Private</span>
+                </span>
               )}
               {project.live_url && (
                 <Link
                   href={project.live_url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-neutral-500 text-xs hover:text-white transition-colors duration-300"
+                  className="inline-flex items-center gap-[0.3em] text-neutral-500 text-xs hover:text-white transition-colors duration-300"
                 >
-                  Live <ArrowUpRight className="inline w-3 h-3" />
+                  <span className="font-pixel">Live</span>
+                  <ArcadeArrowUpRight />
                 </Link>
               )}
             </div>

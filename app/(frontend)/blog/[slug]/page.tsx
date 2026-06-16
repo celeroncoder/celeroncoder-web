@@ -1,7 +1,7 @@
 import "highlight.js/styles/github-dark.css";
 import hljs from "highlight.js";
 import Link from "next/link";
-import { ChevronLeft, Undo2 } from "lucide-react";
+import { ArcadeChevronLeft, ArcadeUTurnLeft } from "@/components/icons/arcade-icons";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -102,9 +102,10 @@ export default async function BlogPostPage({ params }: Props) {
       <div className="mb-12 xl:hidden">
         <Link
           href="/blog"
-          className="inline-flex items-center gap-1.5 text-xs tracking-wide text-neutral-500 hover:text-neutral-200 transition-colors duration-300"
+          className="inline-flex items-center gap-[0.3em] text-xs tracking-wide text-neutral-500 hover:text-neutral-200 transition-colors duration-300"
         >
-          <Undo2 className="w-3.5 h-3.5" /> see all
+          <ArcadeUTurnLeft />
+          <span className="font-pixel">see all</span>
         </Link>
       </div>
 
@@ -163,9 +164,10 @@ export default async function BlogPostPage({ params }: Props) {
       <div className="border-t border-neutral-800 mt-16 pt-6">
         <Link
           href="/blog"
-          className="text-neutral-500 text-sm hover:text-white transition-colors duration-300"
+          className="inline-flex items-center gap-[0.3em] text-neutral-500 text-sm hover:text-white transition-colors duration-300"
         >
-          <ChevronLeft className="inline w-3.5 h-3.5" /> Back to all posts
+          <ArcadeChevronLeft />
+          <span className="font-pixel">Back to all posts</span>
         </Link>
       </div>
     </main>
