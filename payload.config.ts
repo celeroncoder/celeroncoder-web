@@ -1,5 +1,7 @@
 import { buildConfig } from "payload";
-import { lexicalEditor } from "@payloadcms/richtext-lexical";
+import { lexicalEditor, BlocksFeature } from "@payloadcms/richtext-lexical";
+import { MarkdownPasteFeature } from "./features/markdown-paste/feature.server";
+import { codeBlock } from "./features/code-block";
 import { vercelPostgresAdapter } from "@payloadcms/db-vercel-postgres";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -21,7 +23,15 @@ export default buildConfig({
     },
   },
   collections: [Users, Posts, Media, Tags],
-  editor: lexicalEditor(),
+  editor: lexicalEditor({
+    features: ({ defaultFeatures }) => [
+      ...defaultFeatures,
+      // Fenced code blocks (``` ) — toolbar, markdown typing, and markdown paste.
+      // codeBlock() relaxes the language field so any fence token is accepted.
+      BlocksFeature({ blocks: [codeBlock()] }),
+      MarkdownPasteFeature(),
+    ],
+  }),
   secret: process.env.PAYLOAD_SECRET || "CHANGE-ME-IN-PRODUCTION",
   typescript: {
     outputFile: path.resolve(dirname, "payload-types.ts"),
