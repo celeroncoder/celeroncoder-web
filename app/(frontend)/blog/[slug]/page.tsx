@@ -1,12 +1,17 @@
+import "highlight.js/styles/github-dark.css";
+import hljs from "highlight.js";
 import Link from "next/link";
-import { ChevronLeft } from "lucide-react";
+import { ChevronLeft, Undo2 } from "lucide-react";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getPayload } from "payload";
 import config from "@payload-config";
 import { RichText } from "@payloadcms/richtext-lexical/react";
+import type { JSXConvertersFunction } from "@payloadcms/richtext-lexical/react";
 import type { Media as MediaType, Tag } from "@/payload-types";
+import { extractHeadings } from "@/lib/blog-toc";
+import { TocSidebar } from "@/components/blog/toc-sidebar";
 
 export const dynamic = "force-dynamic";
 
@@ -50,14 +55,56 @@ export default async function BlogPostPage({ params }: Props) {
   const heroImage = post.heroImage as MediaType | null;
   const tags = (post.tags || []) as Tag[];
 
+  // Build the table of contents and the matching anchor ids for headings.
+  const headings = extractHeadings(post.content);
+
+  const jsxConverters: JSXConvertersFunction = ({ defaultConverters }) => {
+    let headingIndex = 0;
+    return {
+      ...defaultConverters,
+      heading: ({ node, nodesToJSX }) => {
+        const children = nodesToJSX({ nodes: node.children });
+        const Tag = node.tag as "h2";
+        const id = headings[headingIndex++]?.id;
+        // scroll-mt offsets the sticky-header gap when jumping to an anchor.
+        return (
+          <Tag id={id} className="scroll-mt-24">
+            {children}
+          </Tag>
+        );
+      },
+      blocks: {
+        // Renders the Payload CodeBlock (``` fenced code) with syntax
+        // highlighting (highlight.js, server-side). Falls back to auto-detection
+        // when the fence language isn't a known highlight.js grammar.
+        Code: ({ node }: { node: { fields: { code?: string; language?: string } } }) => {
+          const code = node.fields.code ?? "";
+          const language = node.fields.language;
+          const highlighted =
+            language && hljs.getLanguage(language)
+              ? hljs.highlight(code, { language, ignoreIllegals: true }).value
+              : hljs.highlightAuto(code).value;
+          return (
+            <pre className="hljs overflow-x-auto rounded-lg border border-neutral-800 !bg-neutral-950 p-4 text-[13px] leading-relaxed">
+              <code dangerouslySetInnerHTML={{ __html: highlighted }} />
+            </pre>
+          );
+        },
+      },
+    };
+  };
+
   return (
     <main className="max-w-xl mx-auto px-6 py-16">
-      <div className="mb-12">
+      <TocSidebar headings={headings} />
+
+      {/* On xl+ the "see all" link lives at the top of the TOC sidebar. */}
+      <div className="mb-12 xl:hidden">
         <Link
           href="/blog"
-          className="text-neutral-500 text-sm hover:text-white transition-colors duration-300"
+          className="inline-flex items-center gap-1.5 text-xs tracking-wide text-neutral-500 hover:text-neutral-200 transition-colors duration-300"
         >
-          <ChevronLeft className="inline w-3.5 h-3.5" /> Back to blog
+          <Undo2 className="w-3.5 h-3.5" /> see all
         </Link>
       </div>
 
@@ -109,7 +156,7 @@ export default async function BlogPostPage({ params }: Props) {
 
         <div className="prose prose-invert prose-sm max-w-none prose-headings:font-medium prose-headings:text-white prose-headings:tracking-tight prose-p:text-neutral-300 prose-p:leading-relaxed prose-a:text-white prose-a:underline prose-a:underline-offset-2 prose-code:text-neutral-300 prose-pre:bg-neutral-900 prose-pre:border prose-pre:border-neutral-800 prose-pre:rounded-lg prose-strong:text-white prose-blockquote:border-neutral-700 prose-blockquote:text-neutral-400">
           {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-          <RichText data={post.content as any} />
+          <RichText data={post.content as any} converters={jsxConverters} />
         </div>
       </article>
 
