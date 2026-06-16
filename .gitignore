@@ -24,8 +24,13 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# local env files
+# local env files (contain secrets)
+.env
 .env*.local
+
+# blog sidebar design reference: source recording + extracted frames
+/blog-navigration-sidebar.mp4
+/images/blog-navigration-sidebar/
 
 # vercel
 .vercel
