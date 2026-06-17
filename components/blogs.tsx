@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { useRef, useState, type RefObject } from "react";
 import { ArcadeArrowUpRight } from "@/components/icons/arcade-icons";
 import { motion, useSpring, useTransform, type MotionValue } from "framer-motion";
 
@@ -23,6 +23,7 @@ function Row({
   pos,
   strength,
   spread,
+  dirRef,
   onActivate,
 }: {
   item: BlogsListItem;
@@ -30,26 +31,39 @@ function Row({
   pos: MotionValue<number>;
   strength: MotionValue<number>;
   spread: MotionValue<number>;
+  dirRef: RefObject<number>;
   onActivate: (i: number) => void;
 }) {
+  const tailActive = (signed: number, dir: number) =>
+    dir === 0 ? false : dir > 0 ? signed < 0 : signed > 0;
+
   const background = useTransform([pos, strength, spread], ([p, st, sp]: number[]) => {
-    const dist = Math.abs(index - p);
-    const s = dist < 0.5 ? st : sp;
+    const signed = index - p;
+    const dist = Math.abs(signed);
+    const isHovered = dist < 0.5;
+    const isTail = !isHovered && tailActive(signed, dirRef.current ?? 0);
+    const s = isHovered ? st : isTail ? sp : 0;
     const tint = clamp01(1 - dist / SPREAD);
     const a = tint * tint * s * MAX_ALPHA;
     return `rgba(${ACCENT.r}, ${ACCENT.g}, ${ACCENT.b}, ${a})`;
   });
 
   const ink = useTransform([pos, strength, spread], ([p, st, sp]: number[]) => {
-    const dist = Math.abs(index - p);
-    const s = dist < 0.5 ? st : sp;
+    const signed = index - p;
+    const dist = Math.abs(signed);
+    const isHovered = dist < 0.5;
+    const isTail = !isHovered && tailActive(signed, dirRef.current ?? 0);
+    const s = isHovered ? st : isTail ? sp : 0;
     const k = clamp01(1 - dist / 1.15) * s;
     return `rgb(${Math.round(255 * (1 - k))}, ${Math.round(255 * (1 - k))}, ${Math.round(255 * (1 - k))})`;
   });
 
   const mutedInk = useTransform([pos, strength, spread], ([p, st, sp]: number[]) => {
-    const dist = Math.abs(index - p);
-    const s = dist < 0.5 ? st : sp;
+    const signed = index - p;
+    const dist = Math.abs(signed);
+    const isHovered = dist < 0.5;
+    const isTail = !isHovered && tailActive(signed, dirRef.current ?? 0);
+    const s = isHovered ? st : isTail ? sp : 0;
     const k = clamp01(1 - dist / 1.15) * s;
     return `rgb(${Math.round(115 * (1 - k))}, ${Math.round(115 * (1 - k))}, ${Math.round(115 * (1 - k))})`;
   });
@@ -95,12 +109,18 @@ function Row({
 export function BlogsList({ posts }: { posts: BlogsListItem[] }) {
   const [, setActive] = useState(0);
   const idleTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const prevRef = useRef<number | null>(null);
+  const dirRef = useRef<number>(0);
 
   const pos = useSpring(0, { stiffness: 220, damping: 26, mass: 0.9 });
   const strength = useSpring(0, { stiffness: 260, damping: 30 });
   const spread = useSpring(0, { stiffness: 260, damping: 30 });
 
   const activate = (i: number) => {
+    if (prevRef.current !== null && i !== prevRef.current) {
+      dirRef.current = i > prevRef.current ? 1 : -1;
+    }
+    prevRef.current = i;
     pos.set(i);
     strength.set(1);
     spread.set(1);
@@ -116,6 +136,8 @@ export function BlogsList({ posts }: { posts: BlogsListItem[] }) {
         if (idleTimer.current) clearTimeout(idleTimer.current);
         strength.set(0);
         spread.set(0);
+        prevRef.current = null;
+        dirRef.current = 0;
       }}
     >
       {posts.map((item, i) => (
@@ -126,6 +148,7 @@ export function BlogsList({ posts }: { posts: BlogsListItem[] }) {
           pos={pos}
           strength={strength}
           spread={spread}
+          dirRef={dirRef}
           onActivate={activate}
         />
       ))}

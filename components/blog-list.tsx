@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type RefObject } from "react";
 import { useRouter } from "next/navigation";
 import { motion, useSpring, useTransform, type MotionValue } from "framer-motion";
 import { DitheringShader } from "@/components/ui/dithering-shader";
@@ -42,6 +42,7 @@ function Row({
   pos,
   strength,
   spread,
+  dirRef,
   onActivate,
 }: {
   post: BlogListItem;
@@ -49,31 +50,43 @@ function Row({
   pos: MotionValue<number>;
   strength: MotionValue<number>;
   spread: MotionValue<number>;
+  dirRef: RefObject<number>;
   onActivate: (i: number) => void;
 }) {
-  // Hovered row uses `strength`, neighbours use `spread`.
+  // signed = index - pos: negative means this row is above current, positive means below.
+  // Going down (dir=+1): tail trails upward → tint rows where signed < 0.
+  // Going up  (dir=-1): tail trails downward → tint rows where signed > 0.
+  const tailActive = (signed: number, dir: number) =>
+    dir === 0 ? false : dir > 0 ? signed < 0 : signed > 0;
+
   const background = useTransform([pos, strength, spread], ([p, st, sp]: number[]) => {
-    const dist = Math.abs(index - p);
+    const signed = index - p;
+    const dist = Math.abs(signed);
     const isHovered = dist < 0.5;
-    const s = isHovered ? st : sp;
+    const isTail = !isHovered && tailActive(signed, dirRef.current ?? 0);
+    const s = isHovered ? st : isTail ? sp : 0;
     const tint = clamp01(1 - dist / SPREAD);
     const a = tint * tint * s * MAX_ALPHA;
     return `rgba(${ACCENT.r}, ${ACCENT.g}, ${ACCENT.b}, ${a})`;
   });
 
   const ink = useTransform([pos, strength, spread], ([p, st, sp]: number[]) => {
-    const dist = Math.abs(index - p);
+    const signed = index - p;
+    const dist = Math.abs(signed);
     const isHovered = dist < 0.5;
-    const s = isHovered ? st : sp;
+    const isTail = !isHovered && tailActive(signed, dirRef.current ?? 0);
+    const s = isHovered ? st : isTail ? sp : 0;
     const k = clamp01(1 - dist / 1.15) * s;
     const v = Math.round(255 * (1 - k));
     return `rgb(${v}, ${v}, ${v})`;
   });
 
   const mutedInk = useTransform([pos, strength, spread], ([p, st, sp]: number[]) => {
-    const dist = Math.abs(index - p);
+    const signed = index - p;
+    const dist = Math.abs(signed);
     const isHovered = dist < 0.5;
-    const s = isHovered ? st : sp;
+    const isTail = !isHovered && tailActive(signed, dirRef.current ?? 0);
+    const s = isHovered ? st : isTail ? sp : 0;
     const k = clamp01(1 - dist / 1.15) * s;
     const v = Math.round(115 * (1 - k));
     return `rgb(${v}, ${v}, ${v})`;
@@ -131,8 +144,14 @@ export function BlogList({ posts }: { posts: BlogListItem[] }) {
 
   const idleTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const spread = useSpring(0, { stiffness: 260, damping: 30 });
+  const prevRef = useRef<number | null>(null);
+  const dirRef = useRef<number>(0);
 
   const activate = (i: number) => {
+    if (prevRef.current !== null && i !== prevRef.current) {
+      dirRef.current = i > prevRef.current ? 1 : -1;
+    }
+    prevRef.current = i;
     pos.set(i);
     strength.set(1);
     spread.set(1);
@@ -231,6 +250,8 @@ export function BlogList({ posts }: { posts: BlogListItem[] }) {
           if (idleTimer.current) clearTimeout(idleTimer.current);
           strength.set(0);
           spread.set(0);
+          prevRef.current = null;
+          dirRef.current = 0;
           setHovering(false);
         }}
       >
@@ -242,6 +263,7 @@ export function BlogList({ posts }: { posts: BlogListItem[] }) {
             pos={pos}
             strength={strength}
             spread={spread}
+            dirRef={dirRef}
             onActivate={activate}
           />
         ))}
