@@ -32,6 +32,9 @@ yarn-error.log*
 /blog-navigration-sidebar.mp4
 /images/blog-navigration-sidebar/
 
+# playwright-mcp tool output
+/.playwright-mcp/
+
 # vercel
 .vercel
 
