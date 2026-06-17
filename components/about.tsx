@@ -5,7 +5,7 @@ export function About() {
       <div className="space-y-4 text-sm text-neutral-400 leading-relaxed">
         <p>
           Hey, I&apos;m{" "}
-          <span className="text-white font-medium">Khushal Bhardwaj</span> — a
+          <span className="text-white font-medium">Khushal Bhardwaj</span>, a
           Full Stack Web Developer based in Jaipur, India. Passionate about
           building web apps with React/NextJS. I&apos;m also an undergrad at VIT
           Bhopal University.

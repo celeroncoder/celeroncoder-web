@@ -19,7 +19,7 @@ export const ProjectCard: React.FC<Project> = ({
     <Card>
       <div className="flex items-center gap-2 mb-2">
         <span className="text-neutral-500 text-xs">[DIR]</span>
-        <h3 className="text-white font-bold text-sm">{title}</h3>
+        <h3 className="text-white font-semibold text-sm">{title}</h3>
       </div>
 
       <p className="text-neutral-400 text-xs mb-3">{description}</p>

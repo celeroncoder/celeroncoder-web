@@ -1,5 +1,6 @@
 export const dynamic = "force-dynamic";
 
+import type { Metadata } from "next";
 import { About } from "@/components/about";
 import { Blogs } from "@/components/blogs";
 import { Footer } from "@/components/footer";
@@ -10,9 +11,15 @@ import { Stack } from "@/components/stack";
 import { HeroShader } from "@/components/hero-shader";
 import Link from "next/link";
 
+export const metadata: Metadata = {
+  title: "Khushal Bhardwaj | Full Stack Web Developer",
+  description:
+    "Portfolio of Khushal Bhardwaj, a Full Stack Web Developer based in Jaipur, India, building web apps with React and Next.js.",
+};
+
 export default function Home() {
   return (
-    <main className="min-h-screen bg-black relative">
+    <main className="min-h-screen bg-gray-950 relative">
       {/* Navigation - top right */}
       <header className="absolute top-0 right-0 p-8 md:p-12 z-20">
         <Links />

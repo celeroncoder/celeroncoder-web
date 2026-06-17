@@ -27,7 +27,7 @@ export async function Blogs() {
               {post.title}
             </h3>
             <div className="flex gap-2 text-xs text-neutral-500 mt-1">
-              <span>
+              <span suppressHydrationWarning>
                 {new Date(post.publishedAt).toLocaleDateString("en-US", {
                   year: "numeric",
                   month: "short",
