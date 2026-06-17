@@ -2,7 +2,7 @@ export const dynamic = "force-dynamic";
 
 import type { Metadata } from "next";
 import { About } from "@/components/about";
-import { Blogs } from "@/components/blogs";
+import { Blogs } from "@/components/blogs-server";
 import { Footer } from "@/components/footer";
 import { Greeting } from "@/components/greeting";
 import { Links } from "@/components/links";
