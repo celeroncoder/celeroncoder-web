@@ -3,6 +3,7 @@ import { lexicalEditor, BlocksFeature } from "@payloadcms/richtext-lexical";
 import { MarkdownPasteFeature } from "./features/markdown-paste/feature.server";
 import { codeBlock } from "./features/code-block";
 import { vercelPostgresAdapter } from "@payloadcms/db-vercel-postgres";
+import { resendAdapter } from "@payloadcms/email-resend";
 import path from "path";
 import { fileURLToPath } from "url";
 import sharp from "sharp";
@@ -40,6 +41,11 @@ export default buildConfig({
     pool: {
       connectionString: process.env.DATABASE_URI || "",
     },
+  }),
+  email: resendAdapter({
+    defaultFromAddress: process.env.RESEND_FROM_ADDRESS || "onboarding@resend.dev",
+    defaultFromName: process.env.RESEND_FROM_NAME || "celeroncoder",
+    apiKey: process.env.RESEND_API_KEY || "",
   }),
   sharp,
 });
