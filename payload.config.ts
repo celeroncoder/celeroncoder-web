@@ -3,6 +3,7 @@ import { lexicalEditor, BlocksFeature } from "@payloadcms/richtext-lexical";
 import { MarkdownPasteFeature } from "./features/markdown-paste/feature.server";
 import { codeBlock } from "./features/code-block";
 import { vercelPostgresAdapter } from "@payloadcms/db-vercel-postgres";
+import { vercelBlobStorage } from "@payloadcms/storage-vercel-blob";
 import path from "path";
 import { fileURLToPath } from "url";
 import sharp from "sharp";
@@ -41,5 +42,13 @@ export default buildConfig({
       connectionString: process.env.DATABASE_URI || "",
     },
   }),
+  plugins: [
+    vercelBlobStorage({
+      collections: {
+        media: true,
+      },
+      token: process.env.BLOB_READ_WRITE_TOKEN,
+    }),
+  ],
   sharp,
 });
