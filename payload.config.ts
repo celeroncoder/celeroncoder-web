@@ -4,6 +4,7 @@ import { MarkdownPasteFeature } from "./features/markdown-paste/feature.server";
 import { codeBlock } from "./features/code-block";
 import { vercelPostgresAdapter } from "@payloadcms/db-vercel-postgres";
 import { resendAdapter } from "@payloadcms/email-resend";
+import { vercelBlobStorage } from "@payloadcms/storage-vercel-blob";
 import path from "path";
 import { fileURLToPath } from "url";
 import sharp from "sharp";
@@ -47,5 +48,13 @@ export default buildConfig({
     defaultFromName: process.env.RESEND_FROM_NAME || "celeroncoder",
     apiKey: process.env.RESEND_API_KEY || "",
   }),
+  plugins: [
+    vercelBlobStorage({
+      collections: {
+        media: true,
+      },
+      token: process.env.BLOB_READ_WRITE_TOKEN,
+    }),
+  ],
   sharp,
 });

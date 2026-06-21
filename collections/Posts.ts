@@ -15,7 +15,6 @@ export const Posts: CollectionConfig = {
     {
       name: "slug",
       type: "text",
-      required: true,
       unique: true,
       index: true,
       admin: {
@@ -90,8 +89,8 @@ export const Posts: CollectionConfig = {
   ],
   hooks: {
     beforeValidate: [
-      ({ data, operation }) => {
-        if (data && operation === "create" && data.title && !data.slug) {
+      ({ data }) => {
+        if (data && data.title && !data.slug) {
           data.slug = data.title
             .toLowerCase()
             .replace(/[^a-z0-9]+/g, "-")

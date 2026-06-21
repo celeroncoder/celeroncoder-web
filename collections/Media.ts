@@ -26,11 +26,23 @@ export const Media: CollectionConfig = {
       },
     ],
   },
+  hooks: {
+    beforeValidate: [
+      ({ data, req }) => {
+        if (data && !data.alt) {
+          const filename = data.filename || req?.file?.name;
+          if (filename) {
+            data.alt = filename.replace(/\.[^.]+$/, "");
+          }
+        }
+        return data;
+      },
+    ],
+  },
   fields: [
     {
       name: "alt",
       type: "text",
-      required: true,
     },
   ],
 };
