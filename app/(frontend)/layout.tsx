@@ -7,6 +7,7 @@ import { GeistSans } from "geist/font/sans";
 import { GeistPixelSquare } from "geist/font/pixel";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://celeroncoder.tech"),
   title: "Khushal Bhardwaj",
   description: "Full-stack Software Engineer",
   icons: {

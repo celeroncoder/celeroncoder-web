@@ -10,6 +10,11 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "Blog | Khushal Bhardwaj",
   description: "Blog posts by Khushal Bhardwaj",
+  alternates: {
+    types: {
+      "text/markdown": "/blog.md",
+    },
+  },
 };
 
 export default async function BlogPage() {
