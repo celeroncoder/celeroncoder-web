@@ -7,6 +7,10 @@ All notable changes to this project are documented here. The format is based on
 
 ### Added
 
+- **Markdown page mirrors**: public pages now expose `text/markdown` versions
+  at `/.md`, `/index.md`, `/blog.md`, and `/blog/<slug>.md`. Blog posts are
+  converted directly from Payload Lexical content, and HTML pages advertise
+  their Markdown alternate for discovery.
 - **Blog reading sidebar** — a sticky table of contents that scroll-spies the
   current section as you read, with smooth-scroll anchor links to every heading.
   Hierarchy is conveyed through indentation and dimming: `h2` headings are

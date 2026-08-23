@@ -8,16 +8,18 @@ import {
   writingLinks,
 } from "@/lib/site-content";
 
+const DATE_FORMATTER = new Intl.DateTimeFormat("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+  timeZone: "UTC",
+});
+
 function formatDate(value: string): string {
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return value;
 
-  return new Intl.DateTimeFormat("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-    timeZone: "UTC",
-  }).format(date);
+  return DATE_FORMATTER.format(date);
 }
 
 function escapeLinkLabel(value: string): string {
