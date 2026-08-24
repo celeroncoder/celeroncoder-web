@@ -22,8 +22,12 @@ function formatDate(value: string): string {
   return DATE_FORMATTER.format(date);
 }
 
+function singleLine(value: string): string {
+  return value.replace(/\s*\n\s*/g, " ");
+}
+
 function escapeLinkLabel(value: string): string {
-  return value.replace(/([\\[\]])/g, "\\$1");
+  return singleLine(value).replace(/([\\[\]])/g, "\\$1");
 }
 
 function absoluteUrl(origin: string, pathname: string): string {
@@ -128,15 +132,15 @@ export function renderBlogPostMarkdown(
   }
 
   const sections = [
-    `# ${post.title}`,
-    `> ${post.excerpt.replace(/\n/g, "\n> ")}`,
+    `# ${singleLine(post.title)}`,
+    `> ${singleLine(post.excerpt)}`,
     details.join(" | "),
     `Canonical HTML: ${postHtmlUrl(origin, post.slug)}`,
   ];
 
   if (heroImage?.url) {
     sections.push(
-      `![${escapeLinkLabel(heroImage.alt || post.title)}](${heroImage.url.replace(/\)/g, "%29")})`,
+      `![${escapeLinkLabel(heroImage.alt || post.title)}](${absoluteUrl(origin, heroImage.url).replace(/\)/g, "%29")})`,
     );
   }
 

@@ -1,5 +1,5 @@
 import type { SerializedEditorState } from "lexical";
-import { getPayload, type Payload } from "payload";
+import { getPayload, type Payload, type Where } from "payload";
 import {
   convertLexicalToMarkdown,
   editorConfigFactory,
@@ -11,8 +11,16 @@ import {
   renderBlogPostMarkdown,
   renderHomeMarkdown,
 } from "@/lib/markdown-pages";
+import { SITE_URL } from "@/lib/site-content";
 
 export const dynamic = "force-dynamic";
+
+const POSTS_WITH_SLUG = {
+  and: [
+    { slug: { exists: true } },
+    { slug: { not_equals: "" } },
+  ],
+} satisfies Where;
 
 type RouteContext = {
   params: Promise<{ path?: string[] }>;
@@ -55,9 +63,9 @@ function notFoundResponse() {
   );
 }
 
-export async function GET(request: Request, { params }: RouteContext) {
+export async function GET(_request: Request, { params }: RouteContext) {
   const { path = [] } = await params;
-  const origin = new URL(request.url).origin;
+  const origin = SITE_URL;
   const isHome = path.length === 0 || (path.length === 1 && path[0] === "index");
   const isBlogIndex = path.length === 1 && path[0] === "blog";
   const isBlogPost = path.length === 2 && path[0] === "blog";
@@ -70,6 +78,7 @@ export async function GET(request: Request, { params }: RouteContext) {
     if (isHome) {
       const { docs: posts } = await payload.find({
         collection: "posts",
+        where: POSTS_WITH_SLUG,
         sort: "-publishedAt",
         limit: 5,
       });
@@ -83,8 +92,9 @@ export async function GET(request: Request, { params }: RouteContext) {
     if (isBlogIndex) {
       const { docs: posts } = await payload.find({
         collection: "posts",
+        where: POSTS_WITH_SLUG,
         sort: "-publishedAt",
-        limit: 50,
+        pagination: false,
         depth: 1,
       });
 

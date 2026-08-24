@@ -1,3 +1,5 @@
+export const SITE_URL = "https://celeroncoder.tech";
+
 export const profile = {
   name: "Khushal Bhardwaj",
   email: "celeroncoder@gmail.com",
