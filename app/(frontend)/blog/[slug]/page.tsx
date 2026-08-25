@@ -34,6 +34,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${post.meta?.title || post.title} | Khushal Bhardwaj`,
     description: post.meta?.description || post.excerpt,
+    alternates: {
+      types: {
+        "text/markdown": `/blog/${slug}.md`,
+      },
+    },
   };
 }
 

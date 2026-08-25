@@ -1,10 +1,5 @@
 import Link from "next/link";
-
-const socialLinks = [
-  { name: "GitHub", url: "https://github.com/celeroncoder" },
-  { name: "Twitter", url: "https://twitter.com/celeroncoder" },
-  { name: "LinkedIn", url: "https://linkedin.com/in/celeroncoder" },
-];
+import { socialLinks } from "@/lib/site-content";
 
 export function Links() {
   return (

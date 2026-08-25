@@ -5,8 +5,10 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { GeistSans } from "geist/font/sans";
 import { GeistPixelSquare } from "geist/font/pixel";
+import { SITE_URL } from "@/lib/site-content";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: "Khushal Bhardwaj",
   description: "Full-stack Software Engineer",
   icons: {

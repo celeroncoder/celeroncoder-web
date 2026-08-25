@@ -1,11 +1,4 @@
-const skills = [
-  "TypeScript",
-  "Next.js",
-  "tRPC",
-  "Express.js",
-  "Prisma",
-  "Tailwind CSS",
-];
+import { skills } from "@/lib/site-content";
 
 export function Stack() {
   return (

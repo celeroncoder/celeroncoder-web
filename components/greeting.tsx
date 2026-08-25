@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { profile } from "@/lib/site-content";
 
 export function Greeting() {
   return (
@@ -6,7 +7,7 @@ export function Greeting() {
       <div className="size-20 rounded-full overflow-hidden bg-neutral-800 ring-2 ring-neutral-700">
         <Image
           src="https://github.com/celeroncoder.png"
-          alt="Khushal Bhardwaj"
+          alt={profile.name}
           width={80}
           height={80}
           className="object-cover size-full"
@@ -15,13 +16,11 @@ export function Greeting() {
 
       <div className="space-y-4 max-w-md">
         <h1 className="text-2xl font-medium tracking-tight font-pixel">
-          Hey, I&apos;m Khushal Bhardwaj.
+          Hey, I&apos;m {profile.name}.
         </h1>
 
         <p className="text-neutral-400 text-sm leading-relaxed">
-          Full Stack Web Developer based in Jaipur, India. Passionate about
-          building web apps with React and Next.js. Currently an undergrad at
-          VIT Bhopal University.
+          {profile.introduction}
         </p>
       </div>
     </section>

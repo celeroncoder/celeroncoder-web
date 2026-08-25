@@ -15,6 +15,11 @@ export const metadata: Metadata = {
   title: "Khushal Bhardwaj | Full Stack Web Developer",
   description:
     "Portfolio of Khushal Bhardwaj, a Full Stack Web Developer based in Jaipur, India, building web apps with React and Next.js.",
+  alternates: {
+    types: {
+      "text/markdown": "/.md",
+    },
+  },
 };
 
 export default function Home() {

@@ -1,42 +1,6 @@
 import Link from "next/link";
 import { ArcadeArrowUpRight, ArcadeLock } from "@/components/icons/arcade-icons";
-
-type Project = {
-  title: string;
-  description: string;
-  github_url?: string;
-  live_url?: string;
-};
-
-const projects: Project[] = [
-  {
-    title: "Shire",
-    description:
-      "A macOS native Claude Code wrapper with all the functionalities of Claude Code",
-    github_url: "https://github.com/celeroncoder/shire",
-    live_url: "https://shire.celeroncoder.com",
-  },
-  {
-    title: "Curewell Admin",
-    description:
-      "Extensive CRM Dashboard for Homeopathic Clinic built with Next.js and tRPC",
-  },
-  {
-    title: "PlayerStatPML",
-    description:
-      "Express-TypeScript API proxy for Premier League statistics",
-    github_url: "https://github.com/celeronCoder/playerstatpml",
-    live_url:
-      "https://rapidapi.com/celeronCoder/api/premier-league-player-and-club-statistics",
-  },
-  {
-    title: "winston-highstorm",
-    description:
-      "NPM Package for winston Transport to ingest logs to highstorm.app",
-    github_url: "https://github.com/celeronCoder/winston-highstorm",
-    live_url: "https://link.celeroncoder.tech/winston-transport-npm",
-  },
-];
+import { projects } from "@/lib/site-content";
 
 export function Projects() {
   return (
@@ -50,9 +14,9 @@ export function Projects() {
               {project.description}
             </p>
             <div className="flex gap-4 mt-2">
-              {project.github_url ? (
+              {project.githubUrl ? (
                 <Link
-                  href={project.github_url}
+                  href={project.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-[0.3em] text-neutral-500 text-xs hover:text-white transition-colors duration-300"
@@ -66,9 +30,9 @@ export function Projects() {
                   <span className="font-pixel">Private</span>
                 </span>
               )}
-              {project.live_url && (
+              {project.liveUrl && (
                 <Link
-                  href={project.live_url}
+                  href={project.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-[0.3em] text-neutral-500 text-xs hover:text-white transition-colors duration-300"

@@ -1,10 +1,12 @@
 import Link from "next/link";
+import { profile, writingLinks } from "@/lib/site-content";
 
 const footerLinks = [
-  { name: "GitHub", url: "https://github.com/celeroncoder/celeroncoder.tech" },
-  { name: "Dev.to", url: "https://dev.to/celeron" },
-  { name: "Hashnode", url: "https://hashnode.com/@celeroncoder" },
-  { name: "Medium", url: "https://medium.com/@celeroncoder" },
+  {
+    name: "GitHub",
+    url: "https://github.com/celeroncoder/celeroncoder.tech",
+  },
+  ...writingLinks,
 ];
 
 export function Footer() {
@@ -12,7 +14,7 @@ export function Footer() {
     <footer className="border-t border-neutral-800 pt-8 mt-4">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <p className="text-neutral-500 text-xs" suppressHydrationWarning>
-          &copy; {new Date().getFullYear()} Khushal Bhardwaj. Built with
+          &copy; {new Date().getFullYear()} {profile.name}. Built with
           Next.js.
         </p>
         <div className="flex gap-4">
