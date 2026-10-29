@@ -36,10 +36,10 @@ All notable changes to this project are documented here. The format is based on
 
 ### Changed
 
-- **Faster web fonts**: font bytes per page drop from 201,800 to 25,704. Geist Sans
+- **Faster web fonts**: font bytes per page drop from 201,800 to 26,308. Geist Sans
   and Geist Pixel Square are subset into a preloaded core file and a lazy extended
-  file (behind `unicode-range`); the four unused Pixel variants are no longer
-  preloaded. Rendering is unchanged. Regenerate with `uv run scripts/subset-fonts.py`.
+  file (behind `unicode-range`), and Pixel's hinting is dropped; the four unused
+  Pixel variants are no longer preloaded. Rendering is unchanged. Regenerate with `uv run scripts/subset-fonts.py`.
   (`lib/fonts/`, `scripts/subset-fonts.py`)
 - Typography is now lowercase site-wide (`text-transform: lowercase`).
 

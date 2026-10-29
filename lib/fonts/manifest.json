@@ -17,9 +17,9 @@
       "files": {
         "core": {
           "file": "geist-sans-core.woff2",
-          "bytes": 13556,
-          "glyphs": 125,
-          "unicodeRange": "U+0020-007E, U+00A0, U+00A9, U+00B7, U+2013-2014, U+2018-2019, U+201C-201D, U+2022, U+2026",
+          "bytes": 22684,
+          "glyphs": 371,
+          "unicodeRange": "U+0020-007E, U+00A0-00AC, U+00AE-0113, U+0116-012B, U+012E-0137, U+0139-013E, U+0141-0148, U+014A-014D, U+0150-017E, U+0307, U+2013-2014, U+2018-2019, U+201C-201D, U+2022, U+2026",
           "codepoints": [
             "0020",
             "0021",
@@ -117,24 +117,6 @@
             "007D",
             "007E",
             "00A0",
-            "00A9",
-            "00B7",
-            "2013",
-            "2014",
-            "2018",
-            "2019",
-            "201C",
-            "201D",
-            "2022",
-            "2026"
-          ]
-        },
-        "ext": {
-          "file": "geist-sans-ext.woff2",
-          "bytes": 15692,
-          "glyphs": 296,
-          "unicodeRange": "U+00A1-00A8, U+00AA-00AC, U+00AE-00B6, U+00B8-0113, U+0116-012B, U+012E-0137, U+0139-013E, U+0141-0148, U+014A-014D, U+0150-017E, U+0307, U+3003, U+301C",
-          "codepoints": [
             "00A1",
             "00A2",
             "00A3",
@@ -143,6 +125,7 @@
             "00A6",
             "00A7",
             "00A8",
+            "00A9",
             "00AA",
             "00AB",
             "00AC",
@@ -155,6 +138,7 @@
             "00B4",
             "00B5",
             "00B6",
+            "00B7",
             "00B8",
             "00B9",
             "00BA",
@@ -345,23 +329,39 @@
             "017D",
             "017E",
             "0307",
+            "2013",
+            "2014",
+            "2018",
+            "2019",
+            "201C",
+            "201D",
+            "2022",
+            "2026"
+          ]
+        },
+        "ext": {
+          "file": "geist-sans-ext.woff2",
+          "bytes": 5172,
+          "glyphs": 38,
+          "unicodeRange": "U+3003, U+301C",
+          "codepoints": [
             "3003",
             "301C"
           ]
         }
       },
-      "boundaryKernedPairs": 16551
+      "boundaryKernedPairs": 0
     },
     "geist-pixel-square": {
       "source": "dist/fonts/geist-pixel/GeistPixel-Square.woff2",
       "sourceBytes": 28616,
       "sourceSha256": "04f9cf917a824370c77fecbd743c99d0b3dfd2c6c906de959996ac6f7fb343b3",
       "axes": {},
-      "hinting": true,
+      "hinting": false,
       "files": {
         "core": {
           "file": "geist-pixel-square-core.woff2",
-          "bytes": 12148,
+          "bytes": 3624,
           "glyphs": 118,
           "unicodeRange": "U+0020-007E, U+00A0, U+00A9, U+00B7, U+2013-2014, U+2018-2019, U+201C-201D, U+2022, U+2026",
           "codepoints": [
@@ -475,7 +475,7 @@
         },
         "ext": {
           "file": "geist-pixel-square-ext.woff2",
-          "bytes": 14432,
+          "bytes": 5392,
           "glyphs": 283,
           "unicodeRange": "U+00A1-00A8, U+00AA-00B6, U+00B8-0113, U+0116-012B, U+012E-0137, U+0139-013E, U+0141-0148, U+014C-014D, U+0150-0165, U+0168-017E, U+0307, U+301C",
           "codepoints": [

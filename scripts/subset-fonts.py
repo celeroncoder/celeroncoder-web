@@ -30,15 +30,16 @@ What it does, per font:
      and every post, and folds in upper/lowercase forms (the body is
      `text-transform: lowercase`, some labels are `uppercase`).
   2. Core file  = ASCII + NBSP + common punctuation + anything on the home page
-     or on at least half of the crawled pages. It is preloaded.
-     Extended file = Latin-1 + Latin Extended-A + every other used character
-     the font has. It sits behind `unicode-range`, so only pages that use one
+     or on at least half of the crawled pages (+ all of Latin-1 and Latin
+     Extended-A for fonts with `core_latin`). It is preloaded.
+     Extended file = the rest of Latin-1 + Latin Extended-A + every other used
+     character the font has. It sits behind `unicode-range`, so only pages that use one
      of its characters download it. It also maps a few Latin reference
      letters (AUTOHINT_REFERENCE) that its unicode-range leaves to core.
   3. Drops the part of the weight axis below the lightest weight used (exactly,
      without re-rounding any deltas), drops OpenType features the browser
      never applies here and unneeded tables, and writes deterministic WOFF2.
-     Hinting is kept; see the per-font notes in JOBS.
+     Hinting is set per font; see the notes in JOBS.
   4. Verifies the output (cmap, axes, features, hinting, fallback metrics) and
      shapes every core/extended character and character pair with HarfBuzz
      against the original font at every used weight; any outline or advance
@@ -84,6 +85,23 @@ CORE_PUNCTUATION = {0x00A0, 0x2013, 0x2014, 0x2018, 0x2019, 0x201C, 0x201D, 0x20
 # unicode-range (core still draws them); without them accented glyphs from the
 # extended file rasterize visibly softer than they do today.
 AUTOHINT_REFERENCE = {ord(c) for c in "THEZOCQSLUfijkdbhxzroescpqgjyO0"}
+# The autohinter also hints each glyph with the blue zones of the script it
+# belongs to. A glyph shared with another script's code point (Geist draws
+# U+00B5 MICRO SIGN with its Greek mu) counts as that script, so subsets map
+# that script's code points as well, again without listing them in unicode-range.
+SCRIPT_BLOCKS = [(0x0370, 0x0400), (0x0400, 0x0530)]  # Greek, Cyrillic
+
+
+def shared_script_codepoints(source_cmap: dict[int, str], cps: set[int]) -> set[int]:
+    glyphs = {source_cmap[c] for c in cps if c in source_cmap}
+    out = set()
+    for lo, hi in SCRIPT_BLOCKS:
+        block = {c for c in source_cmap if lo <= c < hi}
+        if any(source_cmap[c] in glyphs for c in block):
+            out |= block
+    return out
+
+
 # Geist draws these two CJK punctuation marks today (CJK text otherwise falls
 # through to system fonts). Keeping them preserves how CJK text renders.
 EXTRA_EXT = {0x3003, 0x301C}
@@ -114,6 +132,10 @@ class FontJob:
     used_weights: list[int] = field(default_factory=list)
     hinting: bool = False
     adjust_font_fallback: bool = True
+    # Put all of Latin-1 + Latin Extended-A in core. Browsers shape each file
+    # separately, so a core/ext split inside Latin text loses kerning between
+    # e.g. `f` and `é`; set this for fonts that kern across that boundary.
+    core_latin: bool = False
     fallback: list[str] | None = None
 
 
@@ -135,6 +157,8 @@ JOBS = [
         # No glyph programs, just a 7-byte `prep` (dropout control). Kept so
         # hinting rasterizers (Windows) see exactly what they see today.
         hinting=True,
+        # Geist Sans kerns 16,551 pairs of ASCII x Latin-1/Ext-A characters.
+        core_latin=True,
     ),
     FontJob(
         name="geist-pixel-square",
@@ -143,10 +167,12 @@ JOBS = [
         source=GEIST_DIR / "dist/fonts/geist-pixel/GeistPixel-Square.woff2",
         weight="500",
         used_weights=[500],
-        # ttfautohint bytecode: ~8.5 KB per file. macOS ignores it, but Windows
-        # (DirectWrite, gasp=15) grid-fits with it, so dropping it would change
-        # how the pixel font rasterizes there. Set False once that's approved.
-        hinting=True,
+        # ttfautohint bytecode, ~8.5 KB per file. Dropped (approved): Linux
+        # Chrome (FreeType autohinter) and macOS ignore it, so they render
+        # identically; Windows DirectWrite grid-fits with it, so the pixel font
+        # can rasterize slightly differently there.
+        hinting=False,
+        # No kerning between ASCII and Latin-1/Ext-A, so the split is lossless.
         adjust_font_fallback=False,
         fallback=PIXEL_FALLBACK,
     ),
@@ -466,7 +492,10 @@ def main() -> None:
         source = TTFont(job.source)
         check_reserved_font_name(source, job)
         cmap = set(source.getBestCmap())
-        core = (ASCII | CORE_PUNCTUATION | common) & cmap
+        core = ASCII | CORE_PUNCTUATION | common
+        if job.core_latin:
+            core |= with_case_forms((LATIN_1 | LATIN_EXT_A) & cmap)
+        core &= cmap
         ext = (with_case_forms((LATIN_1 | LATIN_EXT_A) & cmap) | used | EXTRA_EXT) & cmap - core
         entry = {
             "source": str(job.source.relative_to(GEIST_DIR)),
@@ -477,7 +506,9 @@ def main() -> None:
             "files": {},
         }
         for part, cps, preload in (("core", core, True), ("ext", ext, False)):
-            mapped = cps if preload else cps | (AUTOHINT_REFERENCE & cmap)
+            mapped = cps | shared_script_codepoints(source.getBestCmap(), cps)
+            if not preload:
+                mapped |= AUTOHINT_REFERENCE & cmap
             data = make_subset(job, mapped)
             samples = [r for t in texts for r in runs_within(t, cps)]
             errors = verify(job, part, data, mapped, source, samples)

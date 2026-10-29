@@ -10,7 +10,7 @@ import localFont from "next/font/local";
 const geistSansCore = localFont({
   src: "./geist-sans-core.woff2",
   weight: "400 900",
-  declarations: [{ prop: "unicode-range", value: "U+0020-007E, U+00A0, U+00A9, U+00B7, U+2013-2014, U+2018-2019, U+201C-201D, U+2022, U+2026" }],
+  declarations: [{ prop: "unicode-range", value: "U+0020-007E, U+00A0-00AC, U+00AE-0113, U+0116-012B, U+012E-0137, U+0139-013E, U+0141-0148, U+014A-014D, U+0150-017E, U+0307, U+2013-2014, U+2018-2019, U+201C-201D, U+2022, U+2026" }],
 });
 
 const geistSansExt = localFont({
@@ -18,7 +18,7 @@ const geistSansExt = localFont({
   weight: "400 900",
   preload: false,
   adjustFontFallback: false,
-  declarations: [{ prop: "unicode-range", value: "U+00A1-00A8, U+00AA-00AC, U+00AE-00B6, U+00B8-0113, U+0116-012B, U+012E-0137, U+0139-013E, U+0141-0148, U+014A-014D, U+0150-017E, U+0307, U+3003, U+301C" }],
+  declarations: [{ prop: "unicode-range", value: "U+3003, U+301C" }],
 });
 
 const geistPixelSquareCore = localFont({
