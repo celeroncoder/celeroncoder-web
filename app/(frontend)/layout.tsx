@@ -3,8 +3,7 @@ import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { GeistSans } from "geist/font/sans";
-import { GeistPixelSquare } from "geist/font/pixel";
+import { fontVariables } from "@/lib/fonts";
 import { SITE_URL } from "@/lib/site-content";
 
 export const metadata: Metadata = {
@@ -30,7 +29,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${GeistSans.variable} ${GeistPixelSquare.variable}`}>
+    <html lang="en" style={fontVariables}>
       <body className="scroll-smooth min-h-screen bg-gray-950">
         {children}
         <Analytics />

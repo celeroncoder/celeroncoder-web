@@ -125,7 +125,10 @@ export function Projects() {
 ## Common Gotchas
 
 1. **Client components**: Components using `motion`, hooks, or event handlers need `"use client"`
-2. **Font loading**: Via `next/font/google`, applied with `style={font.style}`
+2. **Font loading**: Geist Sans and Geist Pixel Square are subset into `lib/fonts/` by `scripts/subset-fonts.py`
+   (run by hand with `uv run`, output committed) and applied as CSS variables on `<html>` via `fontVariables`.
+   Don't edit `lib/fonts/index.ts`; rerun the script after content adds new characters (`--check` tells you),
+   after upgrading `geist`, or when using a new weight, italic face, OpenType feature, or Pixel variant.
 3. **Anchor navigation**: Section IDs use lowercase (`id={title.toLowerCase()}`)
 4. **Dark mode only**: Site is permanently in dark mode
 5. **No API routes**: Static portfolio site
