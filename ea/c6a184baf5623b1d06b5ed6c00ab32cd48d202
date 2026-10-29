@@ -1,0 +1,40 @@
+CHANGELOG.md
+  s_be1d5004a61f76::t_7f25a2bf0a7cc8 39-43
+lib/fonts/manifest.json
+  s_be1d5004a61f76::t_e461495b54d8cd 134-135,478-479
+  s_be1d5004a61f76::t_0d36efd5f8b455 1-15,17-19,21-133,137-352,354-359,361-363,365-477,480-696
+  s_be1d5004a61f76::t_a539dd31e4b7aa 16,20,360,364
+  s_be1d5004a61f76::t_96793e65f256e1 136,353
+app/(frontend)/layout.tsx
+  s_be1d5004a61f76::t_3ab28e7ad00f2f 6,32
+AGENTS.md
+  s_be1d5004a61f76::t_7f25a2bf0a7cc8 128-131
+lib/fonts/index.ts
+  s_be1d5004a61f76::t_96793e65f256e1 21
+  s_be1d5004a61f76::t_0d36efd5f8b455 1-20,22-62
+scripts/subset-fonts.py
+  s_be1d5004a61f76::t_feef993e8f7ecc 1-9,17-23,27-35,42-72,74-80,87-134,138-145,150-215,245-246,249-295,298-299,303-375,377-380,382-435,440-469,471-479,482,484-511
+  s_be1d5004a61f76::t_386e59823515e6 24-26
+  s_be1d5004a61f76::t_a539dd31e4b7aa 38-41,135-137,146-149
+  s_be1d5004a61f76::t_7f07ca733b1a5e 10-16,73,436-439
+  s_be1d5004a61f76::t_e461495b54d8cd 36-37,81-86,480-481,483
+  s_be1d5004a61f76::t_7cd563405e8160 296,300-301
+  s_be1d5004a61f76::t_96793e65f256e1 376,381,470
+  s_be1d5004a61f76::t_450edae4379999 216-244,247-248,297,302
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "eac6a184baf5623b1d06b5ed6c00ab32cd48d202",
+  "prompts": {},
+  "sessions": {
+    "s_be1d5004a61f76": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e7f88e26-08a2-40bc-a267-04101d449847",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Khushal Bhardwaj <khushalbhardwaj0111@gmail.com>"
+    }
+  }
+}
