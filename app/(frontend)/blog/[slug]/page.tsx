@@ -1,7 +1,6 @@
-import "highlight.js/styles/github-dark.css";
+import "highlight.js/styles/github.css";
 import hljs from "highlight.js";
 import Link from "next/link";
-import { ArcadeChevronLeft, ArcadeUTurnLeft } from "@/components/icons/arcade-icons";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -11,7 +10,8 @@ import { RichText } from "@payloadcms/richtext-lexical/react";
 import type { JSXConvertersFunction } from "@payloadcms/richtext-lexical/react";
 import type { Media as MediaType, Tag } from "@/payload-types";
 import { extractHeadings } from "@/lib/blog-toc";
-import { TocSidebar } from "@/components/blog/toc-sidebar";
+import { ContentsBox } from "@/components/contents-box";
+import { RetroPage, RetroTitle } from "@/components/retro-page";
 
 export const dynamic = "force-dynamic";
 
@@ -88,7 +88,7 @@ export default async function BlogPostPage({ params }: Props) {
               ? hljs.highlight(code, { language, ignoreIllegals: true }).value
               : hljs.highlightAuto(code).value;
           return (
-            <pre className="hljs overflow-x-auto rounded-lg border border-neutral-800 !bg-neutral-950 p-4 text-[13px] leading-relaxed">
+            <pre className="hljs overflow-x-auto border border-[#eaecf0] !bg-[#f8f9fa] p-3 text-[13px] leading-relaxed">
               <code dangerouslySetInnerHTML={{ __html: highlighted }} />
             </pre>
           );
@@ -97,82 +97,63 @@ export default async function BlogPostPage({ params }: Props) {
     };
   };
 
+  const published = new Date(post.publishedAt).toLocaleDateString("en-GB", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+
   return (
-    <main className="max-w-xl mx-auto px-6 py-16">
-      <TocSidebar headings={headings} />
-
-      {/* On xl+ the "see all" link lives at the top of the TOC sidebar. */}
-      <div className="mb-12 xl:hidden">
-        <Link
-          href="/blog"
-          className="inline-flex items-center gap-[0.3em] text-xs tracking-wide text-neutral-500 hover:text-neutral-200 transition-colors duration-300"
-        >
-          <ArcadeUTurnLeft />
-          <span className="font-pixel">see all</span>
-        </Link>
-      </div>
-
+    <RetroPage>
       <article>
-        <header className="mb-10">
-          <h1 className="text-2xl font-medium tracking-tight font-pixel">{post.title}</h1>
-
-          <div className="flex flex-wrap gap-3 text-xs text-neutral-500 mt-3">
+        <RetroTitle
+          subtitle={
             <span suppressHydrationWarning>
-              {new Date(post.publishedAt).toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
+              {published}
+              {post.readTime && (
+                <> &middot; {/^\d+$/.test(post.readTime) ? `${post.readTime} min read` : post.readTime}</>
+              )}
             </span>
-            {post.readTime && (
-              <>
-                <span>&#183;</span>
-                <span>{post.readTime}</span>
-              </>
-            )}
-          </div>
-
-          {tags.length > 0 && (
-            <div className="flex flex-wrap gap-2 mt-4">
-              {tags.map((tag) => (
-                <span
-                  key={tag.id}
-                  className="text-xs text-neutral-400 bg-neutral-800/50 px-2.5 py-1 rounded-full"
-                >
-                  {tag.name}
-                </span>
-              ))}
-            </div>
-          )}
-        </header>
+          }
+        >
+          {post.title}
+        </RetroTitle>
 
         {heroImage?.url && (
-          <div className="mb-10 rounded-lg overflow-hidden">
+          <figure className="mb-5 border border-[#c8ccd1] bg-[#f8f9fa] p-1">
             <Image
               src={heroImage.url}
               alt={heroImage.alt}
               width={1200}
               height={630}
-              className="w-full"
+              className="w-full border border-[#c8ccd1]"
             />
-          </div>
+          </figure>
         )}
 
-        <div className="prose prose-invert prose-sm max-w-none prose-headings:font-medium prose-headings:text-white prose-headings:tracking-tight prose-p:text-neutral-300 prose-p:leading-relaxed prose-a:text-white prose-a:underline prose-a:underline-offset-2 prose-code:text-neutral-300 prose-pre:bg-neutral-900 prose-pre:border prose-pre:border-neutral-800 prose-pre:rounded-lg prose-strong:text-white prose-blockquote:border-neutral-700 prose-blockquote:text-neutral-400">
+        <ContentsBox headings={headings} />
+
+        <div className="prose max-w-none font-serif text-[17px] text-black prose-headings:font-serif prose-headings:font-normal prose-headings:text-black prose-h2:border-b prose-h2:border-[#a2a9b1] prose-h2:pb-1 prose-h2:text-[1.6rem] prose-h3:text-[1.25rem] prose-h3:font-bold prose-a:font-normal prose-a:text-[#0000ee] [&_a:visited]:text-[#551a8b] prose-strong:text-black prose-blockquote:border-[#a2a9b1] prose-blockquote:font-normal prose-blockquote:not-italic prose-blockquote:text-[#202122] prose-code:font-normal prose-code:before:content-none prose-code:after:content-none [&_:not(pre)>code]:border [&_:not(pre)>code]:border-[#eaecf0] [&_:not(pre)>code]:bg-[#f8f9fa] [&_:not(pre)>code]:px-1 [&_:not(pre)>code]:text-[0.85em]">
           {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
           <RichText data={post.content as any} converters={jsxConverters} />
         </div>
-      </article>
 
-      <div className="border-t border-neutral-800 mt-16 pt-6">
-        <Link
-          href="/blog"
-          className="inline-flex items-center gap-[0.3em] text-neutral-500 text-sm hover:text-white transition-colors duration-300"
-        >
-          <ArcadeChevronLeft />
-          <span className="font-pixel">Back to all posts</span>
-        </Link>
-      </div>
-    </main>
+        {tags.length > 0 && (
+          <div className="mt-10 border border-[#a2a9b1] bg-[#f8f9fa] px-3 py-2 text-sm">
+            Categories:{" "}
+            {tags.map((tag, i) => (
+              <span key={tag.id}>
+                {i > 0 && " | "}
+                {tag.name}
+              </span>
+            ))}
+          </div>
+        )}
+
+        <p className="mt-6 text-sm">
+          &larr; <Link href="/blog">Back to all posts</Link>
+        </p>
+      </article>
+    </RetroPage>
   );
 }

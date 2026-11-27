@@ -8,8 +8,10 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['var(--font-geist-sans)', 'system-ui', 'sans-serif'],
-        pixel: ['var(--font-geist-pixel-square)', 'monospace'],
+        // Early-web defaults: Times for everything, Courier for code.
+        sans: ['"Times New Roman"', 'Times', 'serif'],
+        serif: ['"Times New Roman"', 'Times', 'serif'],
+        mono: ['"Courier New"', 'Courier', 'ui-monospace', 'monospace'],
       },
     },
   },
