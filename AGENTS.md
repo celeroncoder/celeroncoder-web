@@ -74,7 +74,10 @@ lib/
   className={cn("base-classes", conditional && "extra-classes", className)}
   ```
 - **Responsive**: Mobile-first with `sm:`, `md:`, `lg:` prefixes
-- **Dark mode**: Always active (`.dark` class on body)
+- **Early-web theme**: white page, Times New Roman (`font-serif`), classic blue/purple underlined links (set
+  globally in `globals.css`), thin `#a2a9b1` rules and boxes. Every page renders inside `<RetroPage>`
+  (`components/retro-page.tsx`), which adds the link bar, footer, and the animated ASCII background
+  (`components/ascii-background.tsx`). Use `<RetroTitle>` for page titles.
 
 ### Animation Patterns
 
@@ -125,12 +128,10 @@ export function Projects() {
 ## Common Gotchas
 
 1. **Client components**: Components using `motion`, hooks, or event handlers need `"use client"`
-2. **Font loading**: Geist Sans and Geist Pixel Square are subset into `lib/fonts/` by `scripts/subset-fonts.py`
-   (run by hand with `uv run`, output committed) and applied as CSS variables on `<html>` via `fontVariables`.
-   Don't edit `lib/fonts/index.ts`; rerun the script after content adds new characters (`--check` tells you),
-   after upgrading `geist`, or when using a new weight, italic face, OpenType feature, or Pixel variant.
+2. **Fonts**: none are loaded; the site uses system Times New Roman / Courier New on purpose.
 3. **Anchor navigation**: Section IDs use lowercase (`id={title.toLowerCase()}`)
-4. **Dark mode only**: Site is permanently in dark mode
+4. **Home page**: name, then the full post list (`components/post-index.tsx`). No about or projects
+   sections; that data in `lib/site-content.ts` still feeds the Markdown mirrors (`lib/markdown-pages.ts`).
 5. **No API routes**: Static portfolio site
 
 ---

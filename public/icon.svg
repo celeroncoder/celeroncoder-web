@@ -1,4 +1,5 @@
-<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="512" height="512" rx="45" fill="black"/>
-<path d="M147.395 395V129.5H187.895V395H147.395ZM201.395 395V129.5H241.895V395H201.395ZM255.395 395V129.5H268.895V395H255.395ZM309.395 395V129.5H322.895V395H309.395ZM336.395 395V129.5H349.895V395H336.395Z" fill="white"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#ffffff"/>
+  <rect x="16" y="16" width="480" height="480" fill="none" stroke="#000000" stroke-width="24"/>
+  <text x="256" y="372" text-anchor="middle" font-family="'Times New Roman', Times, serif" font-size="340" fill="#000000">K</text>
 </svg>

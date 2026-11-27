@@ -5,6 +5,26 @@ All notable changes to this project are documented here. The format is based on
 
 ## [Unreleased]
 
+### Changed
+
+- **Early-web redesign**: every page is a plain white document in Times New
+  Roman with classic blue/purple underlined links, a `[ GitHub | Twitter ]`
+  link bar, encyclopedia-style titles, text straight on the page (no card), a
+  numbered "Contents" box and a "Categories" box on posts, and light code
+  blocks. Behind it runs an animated, dithered ASCII noise background (black on
+  white, frozen for reduced motion) that fades almost out behind the text
+  column. (`components/retro-page.tsx`, `components/ascii-background.tsx`)
+- **Home page goes straight to the posts**: the intro paragraph, skills, about,
+  and projects sections are gone; the page is the name and the full post
+  list. The link bar only has GitHub and Twitter.
+
+### Removed
+
+- The dithering shader backgrounds, the green hover-band blog lists, and the
+  scroll-spy table-of-contents sidebar.
+- Geist fonts and `scripts/subset-fonts.py` (no web fonts are loaded now), and
+  the unused dark card components.
+
 ### Added
 
 - **Markdown page mirrors**: public pages now expose `text/markdown` versions
